@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Hub - Designer Sarees, Lehenga & Anarkali</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <span>COD AVAILABLE ALL INDIA</span>
+        <button class="close-banner" onclick="closeBanner()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>FASHION<sup>®</sup> HUB</h1>
+            </div>
+            
+            <nav class="nav">
+                <ul>
+                    <li><a href="#home">HOME</a></li>
+                    <li class="dropdown">
+                        <a href="#saree">SAREE <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#designer-saree">Designer Saree</a></li>
+                            <li><a href="#silk-saree">Silk Saree</a></li>
+                            <li><a href="#cotton-saree">Cotton Saree</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#lehenga">LEHENGA <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#wedding-lehenga">Wedding Lehenga</a></li>
+                            <li><a href="#party-lehenga">Party Lehenga</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#dress">DRESS <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#gown">Gown</a></li>
+                            <li><a href="#kurti">Kurti</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#kurti">KURTI <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#designer-kurti">Designer Kurti</a></li>
+                            <li><a href="#cotton-kurti">Cotton Kurti</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#gown">GOWN</a></li>
+                    <li><a href="#anarkali">ANARKALI</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="wishlist-btn">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge">0</span>
+                </button>
+                <button class="cart-btn" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge" id="cart-count">0</span>
+                </button>
+                <span class="currency">Rs. 0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-slider">
+            <div class="slide active">
+                <div class="slide-content">
+                    <div class="slide-text">
+                        <h2>LATEST<br>TRENDS</h2>
+                    </div>
+                    <div class="slide-center">
+                        <h3>UNBEATABLE</h3>
+                        <h1>STYLE</h1>
+                        <p>Upgrade your wardrobe,<br>elevate your confidence, and<br>make every outfit count.</p>
+                        <button class="cta-btn">SHOP NOW!</button>
+                        <p class="website-url">www.fashionhub.in</p>
+                    </div>
+                    <div class="slide-images">
+                        <div class="hero-grid">
+                            <img src="lisitngs/IMG-20250607-WA0021.jpg" alt="Fashion 1">
+                            <img src="lisitngs/IMG-20250607-WA0022.jpg" alt="Fashion 2">
+                            <img src="lisitngs/IMG-20250607-WA0024.jpg" alt="Fashion 3">
+                            <img src="lisitngs/IMG-20250607-WA0025.jpg" alt="Fashion 4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
+    <!-- Shop by Collection -->
+    <section class="collections">
+        <div class="container">
+            <h2>SHOP BY COLLECTION</h2>
+            <div class="collection-grid">
+                <div class="collection-card">
+                    <img src="lisitngs/IMG_20250715_093634_0932.jpg" alt="Designer Anarkali">
+                    <div class="collection-overlay">
+                        <h3>DESIGNER<br>ANARKALI</h3>
+                        <button class="collection-btn">SHOP NOW</button>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="lisitngs/IMG_20250715_093657_0638.JPG" alt="Wedding Lehenga">
+                    <div class="collection-overlay">
+                        <h3>WEDDING<br>LEHENGA</h3>
+                        <button class="collection-btn">SHOP NOW</button>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="lisitngs/IMG_20250715_093720_0783.JPG" alt="Designer Suits">
+                    <div class="collection-overlay">
+                        <h3>DESIGNER<br>SUITS</h3>
+                        <button class="collection-btn">SHOP NOW</button>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="lisitngs/IMG_20250715_093744_0002.JPG" alt="Best Sell Outfit">
+                    <div class="collection-overlay">
+                        <h3>BEST SELL<br>OUTFIT</h3>
+                        <button class="collection-btn">SHOP NOW</button>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="lisitngs/IMG_20250715_093755_0995.jpg" alt="Designer Sarees">
+                    <div class="collection-overlay">
+                        <h3>DESIGNER<br>SAREES</h3>
+                        <button class="collection-btn">SHOP NOW</button>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="lisitngs/IMG_20250715_093810_0693.jpg" alt="Flash Sale">
+                    <div class="collection-overlay">
+                        <h3>FLASH<br>SALE</h3>
+                        <button class="collection-btn">SHOP NOW</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Selling -->
+    <section class="best-selling">
+        <div class="container">
+            <h2>BEST SELLING</h2>
+            <div class="products-grid" id="best-selling-products">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrivals -->
+    <section class="new-arrivals">
+        <div class="container">
+            <h2>NEW ARRIVALS</h2>
+            <div class="products-grid" id="new-arrivals-products">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: Rs. <span id="cart-total">0</span></strong>
+            </div>
+            <button class="whatsapp-enquiry" onclick="sendWhatsAppEnquiry()">
+                <i class="fab fa-whatsapp"></i>
+                Enquire on WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ABOUT US</h3>
+                    <p>Fashion Hub is specialize in curating a mesmerizing collection of Anarkali Dress, Sarees, that transcends boundaries and celebrates the diversity of our heritage.</p>
+                    <div class="social-links">
+                        <h4>Keep in Touch:</h4>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>INFORMATION</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">हम आपके लिए</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#return">Return & Exchange Policy</a></li>
+                        <li><a href="#cod">COD Policy</a></li>
+                        <li><a href="#faq">FAQs</a></li>
+                        <li><a href="#terms">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>CATEGORY</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#saree">Saree</a></li>
+                        <li><a href="#sale">Sale</a></li>
+                        <li><a href="#lehenga">Lehenga Set</a></li>
+                        <li><a href="#dress">Dress</a></li>
+                        <li><a href="#kurti">Kurti</a></li>
+                        <li><a href="#gown">Gown</a></li>
+                        <li><a href="#anarkali">Anarkali</a></li>
+                        <li><a href="#happy">HAPPY CUSTOMER</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>WORKING HOURS</h3>
+                    <div class="working-hours">
+                        <p><strong>MONDAY – SATURDAY</strong></p>
+                        <p>10:00 AM to 06:00 PM</p>
+                        <br>
+                        <p>Whatsapp No.: +91 7202035510</p>
+                        <br>
+                        <p>Reach us: fashionhub9999@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/917202035510" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
