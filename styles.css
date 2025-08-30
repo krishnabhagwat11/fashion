@@ -55,6 +55,19 @@ body {
     padding: 15px 20px;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 60px;
+    width: auto;
+    max-width: 250px;
+    object-fit: contain;
+}
+
+/* Fallback styles for text logo if needed */
 .logo h1 {
     font-size: 24px;
     font-weight: 700;
@@ -818,6 +831,11 @@ body {
         gap: 20px;
     }
     
+    .logo-img {
+        height: 50px;
+        max-width: 200px;
+    }
+    
     .nav ul {
         flex-wrap: wrap;
         justify-content: center;
@@ -857,6 +875,11 @@ body {
 }
 
 @media (max-width: 480px) {
+    .logo-img {
+        height: 40px;
+        max-width: 160px;
+    }
+    
     .hero-grid {
         grid-template-columns: 1fr;
     }
