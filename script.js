@@ -426,7 +426,7 @@ function sendWhatsAppEnquiry() {
     message += `Total Amount: Rs. ${totalPrice}\n\n`;
     message += 'Please provide more details about availability and delivery.';
     
-    const phoneNumber = '917202035510';
+    const phoneNumber = '919898005546';
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     
@@ -655,7 +655,7 @@ Price: Rs. ${product.currentPrice}
 
 Please provide more details about availability, sizes, and delivery options.`;
     
-    const phoneNumber = '917202035510';
+    const phoneNumber = '919898005546';
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     
