@@ -100,6 +100,76 @@ const products = [
     },
     {
         id: 8,
+        title: "Ready to Wear Silk Saree with Designer Blouse",
+        brand: "Fashion Hub",
+        image: "lisitngs/IMG-20250607-WA0022.jpg",
+        currentPrice: 1299,
+        originalPrice: 1999,
+        discount: 35,
+        rating: 4.4,
+        reviews: 156,
+        category: "saree",
+        isNew: true,
+        isBestSelling: false
+    },
+    {
+        id: 9,
+        title: "Wedding Special Heavy Embroidered Saree",
+        brand: "Fashion Hub",
+        image: "lisitngs/IMG-20250607-WA0024.jpg",
+        currentPrice: 2499,
+        originalPrice: 3999,
+        discount: 38,
+        rating: 4.8,
+        reviews: 234,
+        category: "saree",
+        isNew: false,
+        isBestSelling: true
+    },
+    {
+        id: 10,
+        title: "Bollywood Style Designer Saree with Sequins",
+        brand: "Fashion Hub",
+        image: "lisitngs/IMG-20250607-WA0025.jpg",
+        currentPrice: 1799,
+        originalPrice: 2799,
+        discount: 36,
+        rating: 4.6,
+        reviews: 198,
+        category: "saree",
+        isNew: true,
+        isBestSelling: false
+    },
+    {
+        id: 11,
+        title: "One Minute Easy Wear Saree with Pre-stitched Pallu",
+        brand: "Fashion Hub",
+        image: "lisitngs/IMG_20250715_093634_0932.jpg",
+        currentPrice: 999,
+        originalPrice: 1599,
+        discount: 38,
+        rating: 4.3,
+        reviews: 145,
+        category: "saree",
+        isNew: true,
+        isBestSelling: false
+    },
+    {
+        id: 12,
+        title: "Party Wear Glamorous Saree with Heavy Work",
+        brand: "Fashion Hub",
+        image: "lisitngs/IMG_20250715_093657_0638.JPG",
+        currentPrice: 1899,
+        originalPrice: 2999,
+        discount: 37,
+        rating: 4.5,
+        reviews: 167,
+        category: "saree",
+        isNew: false,
+        isBestSelling: true
+    },
+    {
+        id: 13,
         title: "PURE SOFT LIGHTWEIGHT GEORGETTE ANARKALI GOWN",
         brand: "Fashion Hub",
         image: "lisitngs/IMG-20250607-WA0022.jpg",
@@ -250,38 +320,30 @@ function renderProducts(productList, container) {
 
 function createProductCard(product) {
     const card = document.createElement('div');
-    card.className = 'product-card fade-in-up';
+    card.className = 'product-card';
     
     const discountBadge = product.discount ? `<div class="discount-badge">-${product.discount}%</div>` : '';
     const originalPrice = product.originalPrice ? `<span class="original-price">Rs. ${product.originalPrice}</span>` : '';
     
     card.innerHTML = `
-        <div class="product-image">
-            <img src="${product.image}" alt="${product.title}" loading="lazy">
+        <div class="product-image-container">
+            <img src="${product.image}" alt="${product.title}" class="product-image" loading="lazy">
             ${discountBadge}
-            <div class="product-actions">
-                <button class="action-btn" onclick="toggleWishlist(${product.id})" title="Add to Wishlist">
-                    <i class="fas fa-heart"></i>
-                </button>
-                <button class="action-btn" onclick="quickView(${product.id})" title="Quick View">
-                    <i class="fas fa-eye"></i>
-                </button>
-            </div>
         </div>
         <div class="product-info">
-            <div class="product-brand">${product.brand}</div>
+            <div class="brand-name">${product.brand}</div>
             <h3 class="product-title">${product.title}</h3>
-            <div class="product-price">
+            <div class="price-section">
                 <span class="current-price">Rs. ${product.currentPrice}</span>
                 ${originalPrice}
             </div>
-            <div class="product-rating">
+            <div class="rating-section">
                 <div class="stars">
                     ${generateStars(product.rating)}
                 </div>
-                <span class="rating-text">${product.reviews} reviews</span>
+                <span class="review-count">${product.reviews} reviews</span>
             </div>
-            <button class="add-to-cart" onclick="addToCart(${product.id})">
+            <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
                 Add to Cart
             </button>
         </div>
@@ -296,16 +358,16 @@ function generateStars(rating) {
     let starsHTML = '';
     
     for (let i = 0; i < fullStars; i++) {
-        starsHTML += '<i class="fas fa-star"></i>';
+        starsHTML += '<i class="fas fa-star star"></i>';
     }
     
     if (hasHalfStar) {
-        starsHTML += '<i class="fas fa-star-half-alt"></i>';
+        starsHTML += '<i class="fas fa-star-half-alt star"></i>';
     }
     
     const emptyStars = 5 - Math.ceil(rating);
     for (let i = 0; i < emptyStars; i++) {
-        starsHTML += '<i class="far fa-star"></i>';
+        starsHTML += '<i class="far fa-star star empty"></i>';
     }
     
     return starsHTML;
@@ -682,6 +744,16 @@ function nextSlide() {
     dots[currentSlide].classList.add('active');
 }
 
+function previousSlide() {
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+    
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+}
+
 function goToSlide(slideIndex) {
     slides[currentSlide].classList.remove('active');
     dots[currentSlide].classList.remove('active');
@@ -698,6 +770,8 @@ function setupEventListeners() {
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => goToSlide(index));
     });
+    
+
     
     // Collection cards
     document.querySelectorAll('.collection-card').forEach(card => {
