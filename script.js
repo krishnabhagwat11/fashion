@@ -905,3 +905,52 @@ if ('IntersectionObserver' in window) {
         imageObserver.observe(img);
     });
 }
+
+// Mobile Menu Toggle
+function toggleMobileMenu() {
+    const nav = document.querySelector('.nav');
+    if (nav) {
+        nav.classList.toggle('mobile-nav-open');
+    }
+}
+
+// Update Mobile Cart Count
+function updateMobileCartCount() {
+    const mobileCartCount = document.getElementById('mobile-cart-count');
+    if (mobileCartCount) {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        mobileCartCount.textContent = totalItems;
+        
+        // Show/hide badge based on count
+        if (totalItems > 0) {
+            mobileCartCount.style.display = 'flex';
+        } else {
+            mobileCartCount.style.display = 'none';
+        }
+    }
+}
+
+// Mobile Features Initialization
+function initializeMobileFeatures() {
+    // Update mobile cart count
+    updateMobileCartCount();
+    
+    // Initialize mobile navigation
+    const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+    
+    mobileNavItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            // Remove active class from all items
+            mobileNavItems.forEach(nav => nav.classList.remove('active'));
+            
+            // Add active class to clicked item
+            this.classList.add('active');
+        });
+    });
+    
+    // Setup mobile menu toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+    }
+}
