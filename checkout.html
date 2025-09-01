@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion Hub - Designer Sarees, Lehenga & Anarkali</title>
+    <title>Checkout - Fashion Hub</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,12 +23,14 @@
     <header class="header">
         <div class="container">
             <div class="logo">
-                <img src="fashion_hub logo.svg" alt="Fashion Hub" class="logo-img">
+                <a href="index.html">
+                    <img src="fashion_hub logo.svg" alt="Fashion Hub" class="logo-img">
+                </a>
             </div>
             
             <nav class="nav">
                 <ul>
-                    <li><a href="#home">HOME</a></li>
+                    <li><a href="index.html">HOME</a></li>
                     <li class="dropdown">
                         <a href="#saree">SAREE <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
@@ -79,116 +81,164 @@
                     <i class="fas fa-shopping-cart"></i>
                     <span class="badge" id="cart-count">0</span>
                 </button>
-                <span class="currency">Rs. 0</span>
+                <span class="currency">Rs. <span id="cart-total-header">0</span></span>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-slider">
-            <!-- Main Banner Slide (Primary) -->
-            <div class="slide active">
-                <div class="banner-slide">
-                    <img src="banner (1).png" alt="New Collection - Discount Up To 30%" class="banner-image">
-                </div>
+    <!-- Checkout Section -->
+    <section class="checkout">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> / 
+                <a href="#" onclick="history.back()">Cart</a> / 
+                <span>Checkout</span>
             </div>
             
-            <!-- Second Banner Slide -->
-            <div class="slide">
-                <div class="banner-slide">
-                    <img src="banner.png" alt="New Style Collection - Extra 65% Off" class="banner-image">
+            <div class="checkout-grid">
+                <!-- Checkout Form -->
+                <div class="checkout-form">
+                    <h2>Shipping Information</h2>
+                    
+                    <form id="checkout-form">
+                        <div class="form-group">
+                            <label for="full-name">Full Name *</label>
+                            <input type="text" id="full-name" name="fullName" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Address *</label>
+                            <textarea id="address" name="address" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City *</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State *</label>
+                                <input type="text" id="state" name="state" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pincode">Pincode *</label>
+                                <input type="text" id="pincode" name="pincode" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <input type="text" id="country" name="country" value="India" readonly>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notes">Order Notes (Optional)</label>
+                            <textarea id="notes" name="notes" rows="2" placeholder="Any special instructions for delivery..."></textarea>
+                        </div>
+                    </form>
+                    
+                    <h2>Payment Method</h2>
+                    <div class="payment-methods">
+                        <div class="payment-option">
+                            <input type="radio" id="cod" name="payment" value="cod" checked>
+                            <label for="cod">
+                                <i class="fas fa-money-bill-wave"></i>
+                                Cash on Delivery (COD)
+                            </label>
+                        </div>
+                        <div class="payment-option">
+                            <input type="radio" id="upi" name="payment" value="upi">
+                            <label for="upi">
+                                <i class="fas fa-mobile-alt"></i>
+                                UPI Payment
+                            </label>
+                        </div>
+                        <div class="payment-option">
+                            <input type="radio" id="card" name="payment" value="card">
+                            <label for="card">
+                                <i class="fas fa-credit-card"></i>
+                                Credit/Debit Card
+                            </label>
+                        </div>
+                        <div class="payment-option">
+                            <input type="radio" id="netbanking" name="payment" value="netbanking">
+                            <label for="netbanking">
+                                <i class="fas fa-university"></i>
+                                Net Banking
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button class="place-order-btn" onclick="placeOrder()">
+                        <i class="fas fa-shopping-bag"></i>
+                        Place Order
+                    </button>
                 </div>
-            </div>
-            
-            <!-- Original Slide -->
-            <div class="slide">
-                <div class="slide-content">
-                    <div class="slide-text">
-                        <h2>LATEST<br>TRENDS</h2>
+                
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    
+                    <div class="order-items" id="order-items">
+                        <!-- Order items will be loaded here -->
                     </div>
-                    <div class="slide-center">
-                        <h3>UNBEATABLE</h3>
-                        <h1>STYLE</h1>
-                        <p>Upgrade your wardrobe,<br>elevate your confidence, and<br>make every outfit count.</p>
-                        <button class="cta-btn">SHOP NOW!</button>
-                        <p class="website-url">www.fashionhub.in</p>
+                    
+                    <div class="order-totals">
+                        <div class="total-row">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">Rs. 0</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Shipping:</span>
+                            <span id="shipping">Free</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Tax:</span>
+                            <span id="tax">Rs. 0</span>
+                        </div>
+                        <div class="total-row total">
+                            <span>Total:</span>
+                            <span id="total">Rs. 0</span>
+                        </div>
                     </div>
-                    <div class="slide-images">
-                        <div class="hero-grid">
-                            <img src="lisitngs/IMG-20250607-WA0021.jpg" alt="Fashion 1">
-                            <img src="lisitngs/IMG-20250607-WA0022.jpg" alt="Fashion 2">
-                            <img src="lisitngs/IMG-20250607-WA0024.jpg" alt="Fashion 3">
-                            <img src="lisitngs/IMG-20250607-WA0025.jpg" alt="Fashion 4">
+                    
+                    <div class="delivery-info-checkout">
+                        <div class="delivery-option">
+                            <i class="fas fa-truck"></i>
+                            <div>
+                                <strong>Free Delivery</strong>
+                                <p>Get it by 3-5 business days</p>
+                            </div>
+                        </div>
+                        <div class="delivery-option">
+                            <i class="fas fa-undo"></i>
+                            <div>
+                                <strong>Easy Returns</strong>
+                                <p>7 days return policy</p>
+                            </div>
+                        </div>
+                        <div class="delivery-option">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <strong>Secure Payment</strong>
+                                <p>100% secure checkout</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        
-        <!-- Navigation Arrows -->
-        <button class="slider-arrow slider-arrow-left" onclick="previousSlide()">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="slider-arrow slider-arrow-right" onclick="nextSlide()">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-        
-        <div class="slider-dots">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-        </div>
-    </section>
-
-
-
-    <!-- Shop by Collection -->
-    <section class="collections">
-        <div class="container">
-            <h2>SHOP BY COLLECTION</h2>
-            <div class="collection-grid">
-                <div class="collection-card">
-                    <img src="lisitngs/IMG_20250715_093634_0932.jpg" alt="Designer Anarkali">
-                    <div class="collection-overlay">
-                        <h3>DESIGNER<br>ANARKALI</h3>
-                        <button class="collection-btn" onclick="window.location.href='anarkali-listing.html'">SHOP NOW</button>
-                    </div>
-                </div>
-                <div class="collection-card">
-                    <img src="lisitngs/IMG_20250715_093657_0638.JPG" alt="Wedding Lehenga">
-                    <div class="collection-overlay">
-                        <h3>WEDDING<br>LEHENGA</h3>
-                        <button class="collection-btn" onclick="window.location.href='lehenga-listing.html'">SHOP NOW</button>
-                    </div>
-                </div>
-                <div class="collection-card">
-                    <img src="lisitngs/IMG_20250715_093720_0783.JPG" alt="Designer Suits">
-                    <div class="collection-overlay">
-                        <h3>DESIGNER<br>SUITS</h3>
-                        <button class="collection-btn" onclick="window.location.href='kurti-listing.html'">SHOP NOW</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Best Selling -->
-    <section class="best-selling">
-        <div class="container">
-            <h2>BEST SELLING</h2>
-            <div class="products-grid" id="best-selling-products">
-                <!-- Products will be loaded here by JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- New Arrivals -->
-    <section class="new-arrivals">
-        <div class="container">
-            <h2>NEW ARRIVALS</h2>
-            <div class="products-grid" id="new-arrivals-products">
-                <!-- Products will be loaded here by JavaScript -->
             </div>
         </div>
     </section>
@@ -208,6 +258,10 @@
             <div class="cart-total">
                 <strong>Total: Rs. <span id="cart-total">0</span></strong>
             </div>
+            <button class="checkout-btn" onclick="proceedToCheckout()">
+                <i class="fas fa-credit-card"></i>
+                Proceed to Checkout
+            </button>
             <button class="whatsapp-enquiry" onclick="sendWhatsAppEnquiry()">
                 <i class="fab fa-whatsapp"></i>
                 Enquire on WhatsApp
@@ -247,7 +301,7 @@
                 <div class="footer-section">
                     <h3>CATEGORY</h3>
                     <ul>
-                        <li><a href="#home">Home</a></li>
+                        <li><a href="index.html">Home</a></li>
                         <li><a href="#saree">Saree</a></li>
                         <li><a href="#sale">Sale</a></li>
                         <li><a href="#lehenga">Lehenga Set</a></li>
@@ -283,6 +337,10 @@
 
     <!-- Mobile Bottom Navigation -->
     <div class="mobile-bottom-nav">
+        <a href="index.html" class="mobile-nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
         <a href="#shop" class="mobile-nav-item">
             <i class="fas fa-th-large"></i>
             <span>Shop</span>
@@ -296,13 +354,9 @@
             <i class="fas fa-user"></i>
             <span>Account</span>
         </a>
-        <a href="#search" class="mobile-nav-item">
-            <i class="fas fa-search"></i>
-            <span>Search</span>
-            <span class="mobile-nav-badge red">1</span>
-        </a>
     </div>
 
     <script src="script.js"></script>
+    <script src="checkout.js"></script>
 </body>
 </html>

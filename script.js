@@ -349,6 +349,13 @@ function createProductCard(product) {
         </div>
     `;
     
+    // Add click event to navigate to product detail
+    card.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('add-to-cart-btn')) {
+            window.location.href = `product-detail.html?id=${product.id}`;
+        }
+    });
+    
     return card;
 }
 
