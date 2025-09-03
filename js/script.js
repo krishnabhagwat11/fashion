@@ -3,7 +3,8 @@ function getAssetPath(relativePath) {
     try {
         const inPagesDir = window.location && window.location.pathname.toLowerCase().includes('/pages/');
         const cleaned = String(relativePath || '').replace(/^\.?\/+/, '');
-        return (inPagesDir ? '../' : '') + cleaned;
+        const full = (inPagesDir ? '../' : '') + cleaned;
+        return encodeURI(full);
     } catch (e) {
         // Fallback if window is unavailable
         return relativePath;
@@ -68,9 +69,14 @@ function generateStars(rating) {
 const products = [
     {
         id: 1,
-        title: "Beautiful Designer Wedding Special Velvet Saree",
+        title: "Embodied anarkali with full selves",
         brand: "Fashion Hub",
-        image: "assets/lisitngs/IMG_20250715_093634_0932.jpg",
+        image: "assets/listings images/part1/a1.jpg",
+        images: [
+            "assets/listings images/part1/a1.jpg",
+            "assets/listings images/part1/a2.jpg",
+            "assets/listings images/part1/a3.jpg"
+        ],
         currentPrice: 1399,
         originalPrice: 2199,
         discount: 36,
@@ -82,29 +88,39 @@ const products = [
     },
     {
         id: 2,
-        title: "Elegant Designer Printed Gown",
+        title: "Designer Kurti with Elegant Work",
         brand: "Fashion Hub",
-        image: "assets/lisitngs/IMG_20250715_093657_0638.JPG",
+        image: "assets/listings images/part1/k1.jpg",
+        images: [
+            "assets/listings images/part1/k1.jpg",
+            "assets/listings images/part1/k2.jpg",
+            "assets/listings images/part1/k3.jpg"
+        ],
         currentPrice: 1099,
         originalPrice: 2100,
         discount: 48,
         rating: 4.3,
         reviews: 89,
-        category: "gown",
+        category: "kurti",
         isNew: false,
         isBestSelling: true
     },
     {
         id: 3,
-        title: "Elegant Heavy Fancy Silk Gown Set With Embroidered Dupatta",
+        title: "Premium Silk Saree Collection",
         brand: "Fashion Hub",
-        image: "assets/lisitngs/IMG_20250715_093720_0783.JPG",
+        image: "assets/listings images/part1/s1.jpg",
+        images: [
+            "assets/listings images/part1/s1.jpg",
+            "assets/listings images/part1/s2.jpg",
+            "assets/listings images/part1/s3.jpg"
+        ],
         currentPrice: 1249,
         originalPrice: 1999,
         discount: 38,
         rating: 4.6,
         reviews: 156,
-        category: "gown",
+        category: "saree",
         isNew: false,
         isBestSelling: true
     },
@@ -112,7 +128,12 @@ const products = [
         id: 4,
         title: "Fancy Border Premium Lace Work Silk Saree",
         brand: "Fashion Hub",
-        image: "assets/lisitngs/IMG_20250715_093744_0002.JPG",
+        image: "assets/listings images/part1/p1.jpg",
+        images: [
+            "assets/listings images/part1/p1.jpg",
+            "assets/listings images/part1/p2.jpg",
+            "assets/listings images/part1/p3.jpg"
+        ],
         currentPrice: 1299,
         originalPrice: 2099,
         discount: 38,
@@ -126,7 +147,12 @@ const products = [
         id: 5,
         title: "PURE SOFT FOX GEORGETTE MOST TRENDING ANARKALI SUIT",
         brand: "Fashion Hub",
-        image: "assets/lisitngs/IMG_20250715_093755_0995.jpg",
+        image: "assets/listings images/part1/k1.jpg",
+        images: [
+            "assets/listings images/part1/k1.jpg",
+            "assets/listings images/part1/k2.jpg",
+            "assets/listings images/part1/k3.jpg"
+        ],
         currentPrice: 1199,
         originalPrice: 1899,
         discount: 37,
@@ -138,9 +164,14 @@ const products = [
     },
     {
         id: 6,
-        title: "Hug Demanded Cassata Work Anarakali Suit With Dupatta",
+        title: "Premium Anarkali Suit Collection",
         brand: "Fashion Hub",
-        image: "assets/lisitngs/IMG_20250715_093810_0693.jpg",
+        image: "assets/listings images/part1/lis4.jpg",
+        images: [
+            "assets/listings images/part1/lis4.jpg",
+            "assets/listings images/part1/k2.jpg",
+            "assets/listings images/part1/s1.jpg"
+        ],
         currentPrice: 1249,
         originalPrice: 1999,
         discount: 38,
@@ -166,7 +197,7 @@ const products = [
     },
     {
         id: 8,
-        title: "Ready to Wear Silk Saree with Designer Blouse",
+        title: "Gorgett fabrics beautiful Anarkali gown",
         brand: "Fashion Hub",
         image: "assets/lisitngs/IMG-20250607-WA0022.jpg",
         currentPrice: 1299,
@@ -182,7 +213,12 @@ const products = [
         id: 9,
         title: "Wedding Special Heavy Embroidered Saree",
         brand: "Fashion Hub",
-        image: "assets/lisitngs/IMG-20250607-WA0024.jpg",
+        image: "assets/listings images/part1/lis1.jpg",
+        images: [
+            "assets/listings images/part1/lis1.jpg",
+            "assets/listings images/part1/lis2.jpg",
+            "assets/listings images/part1/lis3.jpg"
+        ],
         currentPrice: 2499,
         originalPrice: 3999,
         discount: 38,
@@ -194,7 +230,7 @@ const products = [
     },
     {
         id: 10,
-        title: "Bollywood Style Designer Saree with Sequins",
+        title: "Chanderi silk fabric latest dress",
         brand: "Fashion Hub",
         image: "assets/lisitngs/IMG-20250607-WA0025.jpg",
         currentPrice: 1799,
@@ -208,7 +244,7 @@ const products = [
     },
     {
         id: 11,
-        title: "One Minute Easy Wear Saree with Pre-stitched Pallu",
+        title: "Embodied anarkali with full selves",
         brand: "Fashion Hub",
         image: "assets/lisitngs/IMG_20250715_093634_0932.jpg",
         currentPrice: 999,
@@ -222,15 +258,20 @@ const products = [
     },
     {
         id: 12,
-        title: "Party Wear Glamorous Saree with Heavy Work",
+        title: "Designer Lehenga Collection",
         brand: "Fashion Hub",
-        image: "assets/lisitngs/IMG_20250715_093657_0638.JPG",
+        image: "assets/listings images/part1/l1.jpg",
+        images: [
+            "assets/listings images/part1/l1.jpg",
+            "assets/listings images/part1/l2.jpg",
+            "assets/listings images/part1/l3.jpg"
+        ],
         currentPrice: 1899,
         originalPrice: 2999,
         discount: 37,
         rating: 4.5,
         reviews: 167,
-        category: "saree",
+        category: "lehenga",
         isNew: false,
         isBestSelling: true
     },
@@ -264,7 +305,7 @@ const products = [
     },
     {
         id: 20,
-        title: "Premium Designer Wedding Lehenga Set",
+        title: "Chanderi silk fabric latest dress",
         brand: "Fashion Hub",
         image: "assets/lisitngs/IMG-20250607-WA0025.jpg",
         currentPrice: 1799,
@@ -292,7 +333,7 @@ const products = [
     },
     {
         id: 22,
-        title: "Designer Party Wear Gown with Dupatta",
+        title: "Organza fabrics beautiful gown full sleeves",
         brand: "Fashion Hub",
         image: "assets/lisitngs/IMG-20250628-WA0030.jpg",
         currentPrice: 1399,
@@ -306,7 +347,7 @@ const products = [
     },
     {
         id: 23,
-        title: "Luxury Silk Saree with Golden Border",
+        title: "Organza fabrics beautiful gown full sleeves",
         brand: "Fashion Hub",
         image: "assets/lisitngs/IMG-20250628-WA0041.jpg",
         currentPrice: 1499,
@@ -320,7 +361,7 @@ const products = [
     },
     {
         id: 24,
-        title: "Elegant Designer Kurti Set with Palazzo",
+        title: "Chanderi silk fabric latest dress",
         brand: "Fashion Hub",
         image: "assets/lisitngs/IMG-20250628-WA0065.jpg",
         currentPrice: 1099,

@@ -29,7 +29,9 @@ function loadProductDetails() {
     document.getElementById('product-title-breadcrumb').textContent = product.title;
 
     // Update main product image
-    document.getElementById('main-product-image').src = getAssetPath(product.image);
+    const mainImgEl = document.getElementById('main-product-image');
+    const primaryImage = Array.isArray(product.images) && product.images.length > 0 ? product.images[0] : product.image;
+    mainImgEl.src = getAssetPath(primaryImage);
     document.getElementById('main-product-image').alt = product.title;
 
     // Update product title
@@ -61,6 +63,21 @@ function loadProductDetails() {
 
     // Update product description
     document.getElementById('product-description').textContent = generateProductDescription(product);
+
+    // Thumbnails
+    const thumbs = Array.isArray(product.images) ? product.images : [product.image];
+    const thumbsContainer = document.getElementById('thumbnail-images');
+    thumbsContainer.innerHTML = '';
+    thumbs.forEach(src => {
+        const img = document.createElement('img');
+        img.src = getAssetPath(src);
+        img.alt = product.title;
+        img.className = 'thumbnail';
+        img.addEventListener('click', () => {
+            mainImgEl.src = getAssetPath(src);
+        });
+        thumbsContainer.appendChild(img);
+    });
 
     // Load related products
     loadRelatedProducts(product);
