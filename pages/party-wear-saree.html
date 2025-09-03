@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bollywood Saree - Fashion Hub</title>
+    <title>Party Wear Saree - Fashion Hub</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -85,15 +85,15 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1>Bollywood Saree</h1>
-            <p>Channel your inner Bollywood diva with our glamorous collection of Bollywood-inspired sarees</p>
+            <h1>Party Wear Saree</h1>
+            <p>Stunning party wear sarees to make you the center of attention at every celebration</p>
         </div>
     </section>
 
     <!-- Products Section -->
     <section class="products-section">
         <div class="container">
-            <div class="products-grid" id="bollywood-saree-products">
+            <div class="products-grid" id="party-wear-saree-products">
                 <!-- Products will be loaded here by JavaScript -->
             </div>
         </div>
@@ -187,25 +187,14 @@
         </a>
     </div>
 
-    <script src="script.js"></script>
+    <script src="../js/script.js"></script>
     <script>
-        // Load bollywood saree products with pagination
+        // Load party wear saree products
         document.addEventListener('DOMContentLoaded', function() {
-            let bollywoodSareeProducts = products.filter(product => 
-                product.category === 'saree'
+            const partyWearSareeProducts = products.filter(product => 
+                product.category === 'saree' && product.title.toLowerCase().includes('party')
             );
-            
-            // If not enough products, duplicate some to demonstrate pagination
-            while (bollywoodSareeProducts.length < 15) {
-                const additionalProducts = bollywoodSareeProducts.map((product, index) => ({
-                    ...product,
-                    id: product.id + (bollywoodSareeProducts.length * 100) + index,
-                    title: product.title + ` (Bollywood Style ${Math.floor(Math.random() * 100)})`
-                }));
-                bollywoodSareeProducts = [...bollywoodSareeProducts, ...additionalProducts];
-            }
-            
-            renderProducts(bollywoodSareeProducts, document.getElementById('bollywood-saree-products'), true);
+            renderProducts(partyWearSareeProducts, document.getElementById('party-wear-saree-products'));
         });
     </script>
 </body>

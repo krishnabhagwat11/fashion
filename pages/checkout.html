@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Fashion Hub</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <span>COD AVAILABLE ALL INDIA</span>
+        <button class="close-banner" onclick="closeBanner()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../assets/logos/fashion_hub logo.svg" alt="Fashion Hub" class="logo-img">
+                </a>
+            </div>
+            
+            <nav class="nav">
+                <ul>
+                    <li><a href="../index.html">HOME</a></li>
+                    <li class="dropdown">
+                        <a href="#saree">SAREE <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="ready-to-wear-saree.html">Ready to Wear Saree</a></li>
+                            <li><a href="wedding-saree.html">Wedding Saree</a></li>
+                            <li><a href="bollywood-saree.html">Bollywood Saree</a></li>
+                            <li><a href="one-minute-saree.html">One Minute Saree</a></li>
+                            <li><a href="party-wear-saree.html">Party Wear Saree</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="lehenga-listing.html">LEHENGA <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="lehenga-listing.html">All Lehengas</a></li>
+                            <li><a href="lehenga-listing.html#wedding">Wedding Lehenga</a></li>
+                            <li><a href="lehenga-listing.html#party">Party Lehenga</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#dress">DRESS <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="gown-listing.html">Gown</a></li>
+                            <li><a href="kurti-listing.html">Kurti</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="kurti-listing.html">KURTI <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="kurti-listing.html">All Kurtis</a></li>
+                            <li><a href="kurti-listing.html#designer">Designer Kurti</a></li>
+                            <li><a href="kurti-listing.html#cotton">Cotton Kurti</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="gown-listing.html">GOWN</a></li>
+                    <li><a href="anarkali-listing.html">ANARKALI</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="wishlist-btn">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge">0</span>
+                </button>
+                <button class="cart-btn" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge" id="cart-count">0</span>
+                </button>
+                <span class="currency">Rs. <span id="cart-total-header">0</span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Checkout Section -->
+    <section class="checkout">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="../index.html">Home</a> / 
+                <a href="#" onclick="history.back()">Cart</a> / 
+                <span>Checkout</span>
+            </div>
+            
+            <div class="checkout-grid">
+                <!-- Checkout Form -->
+                <div class="checkout-form">
+                    <h2>Shipping Information</h2>
+                    
+                    <form id="checkout-form">
+                        <div class="form-group">
+                            <label for="full-name">Full Name *</label>
+                            <input type="text" id="full-name" name="fullName" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Address *</label>
+                            <textarea id="address" name="address" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City *</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State *</label>
+                                <input type="text" id="state" name="state" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pincode">Pincode *</label>
+                                <input type="text" id="pincode" name="pincode" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <input type="text" id="country" name="country" value="India" readonly>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notes">Order Notes (Optional)</label>
+                            <textarea id="notes" name="notes" rows="2" placeholder="Any special instructions for delivery..."></textarea>
+                        </div>
+                    </form>
+                    
+                    <h2>Payment Method</h2>
+                    <div class="payment-methods">
+                        <div class="payment-option">
+                            <input type="radio" id="cod" name="payment" value="cod" checked>
+                            <label for="cod">
+                                <i class="fas fa-money-bill-wave"></i>
+                                Cash on Delivery (COD)
+                            </label>
+                        </div>
+                        <div class="payment-option">
+                            <input type="radio" id="upi" name="payment" value="upi">
+                            <label for="upi">
+                                <i class="fas fa-mobile-alt"></i>
+                                UPI Payment
+                            </label>
+                        </div>
+                        <div class="payment-option">
+                            <input type="radio" id="card" name="payment" value="card">
+                            <label for="card">
+                                <i class="fas fa-credit-card"></i>
+                                Credit/Debit Card
+                            </label>
+                        </div>
+                        <div class="payment-option">
+                            <input type="radio" id="netbanking" name="payment" value="netbanking">
+                            <label for="netbanking">
+                                <i class="fas fa-university"></i>
+                                Net Banking
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button class="place-order-btn" onclick="placeOrder()">
+                        <i class="fas fa-shopping-bag"></i>
+                        Place Order
+                    </button>
+                </div>
+                
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    
+                    <div class="order-items" id="order-items">
+                        <!-- Order items will be loaded here -->
+                    </div>
+                    
+                    <div class="order-totals">
+                        <div class="total-row">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">Rs. 0</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Shipping:</span>
+                            <span id="shipping">Free</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Tax:</span>
+                            <span id="tax">Rs. 0</span>
+                        </div>
+                        <div class="total-row total">
+                            <span>Total:</span>
+                            <span id="total">Rs. 0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="delivery-info-checkout">
+                        <div class="delivery-option">
+                            <i class="fas fa-truck"></i>
+                            <div>
+                                <strong>Free Delivery</strong>
+                                <p>Get it by 3-5 business days</p>
+                            </div>
+                        </div>
+                        <div class="delivery-option">
+                            <i class="fas fa-undo"></i>
+                            <div>
+                                <strong>Easy Returns</strong>
+                                <p>7 days return policy</p>
+                            </div>
+                        </div>
+                        <div class="delivery-option">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <strong>Secure Payment</strong>
+                                <p>100% secure checkout</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: Rs. <span id="cart-total">0</span></strong>
+            </div>
+            <button class="checkout-btn" onclick="proceedToCheckout()">
+                <i class="fas fa-credit-card"></i>
+                Proceed to Checkout
+            </button>
+            <button class="whatsapp-enquiry" onclick="sendWhatsAppEnquiry()">
+                <i class="fab fa-whatsapp"></i>
+                Enquire on WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ABOUT US</h3>
+                    <p>Fashion Hub is specialize in curating a mesmerizing collection of Anarkali Dress, Sarees, that transcends boundaries and celebrates the diversity of our heritage.</p>
+                    <div class="social-links">
+                        <h4>Keep in Touch:</h4>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>INFORMATION</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">हम आपके लिए</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#return">Return & Exchange Policy</a></li>
+                        <li><a href="#cod">COD Policy</a></li>
+                        <li><a href="#faq">FAQs</a></li>
+                        <li><a href="#terms">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>CATEGORY</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="#saree">Saree</a></li>
+                        <li><a href="#sale">Sale</a></li>
+                        <li><a href="#lehenga">Lehenga Set</a></li>
+                        <li><a href="#dress">Dress</a></li>
+                        <li><a href="#kurti">Kurti</a></li>
+                        <li><a href="#gown">Gown</a></li>
+                        <li><a href="#anarkali">Anarkali</a></li>
+                        <li><a href="#happy">HAPPY CUSTOMER</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>WORKING HOURS</h3>
+                    <div class="working-hours">
+                        <p><strong>MONDAY – SATURDAY</strong></p>
+                        <p>10:00 AM to 06:00 PM</p>
+                        <br>
+                        <p>Whatsapp No.: +91 9898005546</p>
+                        <br>
+                        <p>Reach us: fashion_hub98981@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/919898005546" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-nav">
+        <a href="../index.html" class="mobile-nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#shop" class="mobile-nav-item">
+            <i class="fas fa-th-large"></i>
+            <span>Shop</span>
+        </a>
+        <a href="#cart" class="mobile-nav-item" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+            <span class="mobile-nav-badge" id="mobile-cart-count">0</span>
+        </a>
+        <a href="#account" class="mobile-nav-item">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+    </div>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/checkout.js"></script>
+</body>
+</html>
+

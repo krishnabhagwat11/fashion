@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gown Collection - Fashion Hub</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <span>COD AVAILABLE ALL INDIA</span>
+        <button class="close-banner" onclick="closeBanner()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../assets/logos/fashion_hub logo.svg" alt="Fashion Hub" class="logo-img">
+                </a>
+            </div>
+            
+            <nav class="nav">
+                <ul>
+                    <li><a href="../index.html">HOME</a></li>
+                    <li class="dropdown">
+                        <a href="#saree">SAREE <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="ready-to-wear-saree.html">Ready to Wear Saree</a></li>
+                            <li><a href="wedding-saree.html">Wedding Saree</a></li>
+                            <li><a href="bollywood-saree.html">Bollywood Saree</a></li>
+                            <li><a href="one-minute-saree.html">One Minute Saree</a></li>
+                            <li><a href="party-wear-saree.html">Party Wear Saree</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#lehenga">LEHENGA <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="lehenga-listing.html">All Lehengas</a></li>
+                            <li><a href="#wedding-lehenga">Wedding Lehenga</a></li>
+                            <li><a href="#party-lehenga">Party Lehenga</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#dress">DRESS <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="gown-listing.html">Gown</a></li>
+                            <li><a href="kurti-listing.html">Kurti</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#kurti">KURTI <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="kurti-listing.html">All Kurtis</a></li>
+                            <li><a href="#designer-kurti">Designer Kurti</a></li>
+                            <li><a href="#cotton-kurti">Cotton Kurti</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#gown">GOWN <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#bridal-gown">Bridal Gown</a></li>
+                            <li><a href="#party-gown">Party Gown</a></li>
+                            <li><a href="#designer-gown">Designer Gown</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#anarkali">ANARKALI <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="anarkali-listing.html">All Anarkalis</a></li>
+                            <li><a href="#designer-anarkali">Designer Anarkali</a></li>
+                            <li><a href="#party-anarkali">Party Anarkali</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="wishlist-btn">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge">0</span>
+                </button>
+                <button class="cart-btn" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge" id="cart-count">0</span>
+                </button>
+                <span class="currency">Rs. 0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>GOWN COLLECTION</h1>
+            <p>Discover our stunning collection of designer gowns for every special occasion</p>
+        </div>
+    </section>
+
+    <!-- Category Navigation -->
+    <section class="category-nav">
+        <div class="container">
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="all">All Gowns</button>
+                <button class="category-tab" data-category="bridal">Bridal Gown</button>
+                <button class="category-tab" data-category="party">Party Gown</button>
+                <button class="category-tab" data-category="designer">Designer Gown</button>
+                <button class="category-tab" data-category="evening">Evening Gown</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters and Sorting -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-row">
+                <div class="filter-group">
+                    <label>Price Range:</label>
+                    <select id="price-filter">
+                        <option value="">All Prices</option>
+                        <option value="0-2000">Under ₹2,000</option>
+                        <option value="2000-5000">₹2,000 - ₹5,000</option>
+                        <option value="5000-10000">₹5,000 - ₹10,000</option>
+                        <option value="10000+">Above ₹10,000</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Sort By:</label>
+                    <select id="sort-filter">
+                        <option value="newest">Newest First</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="popularity">Most Popular</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Color:</label>
+                    <select id="color-filter">
+                        <option value="">All Colors</option>
+                        <option value="red">Red</option>
+                        <option value="pink">Pink</option>
+                        <option value="blue">Blue</option>
+                        <option value="green">Green</option>
+                        <option value="purple">Purple</option>
+                        <option value="gold">Gold</option>
+                        <option value="silver">Silver</option>
+                        <option value="black">Black</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-grid" id="gown-products">
+                <!-- Bridal Gown Products -->
+                <div class="product-card" data-category="bridal" data-price="8500" data-color="red">
+                    <div class="product-image">
+                        <img src="../assets/lisitngs/IMG_20250715_093634_0932.jpg" alt="Bridal Gown">
+                        <div class="product-overlay">
+                            <button class="quick-view-btn" onclick="quickView(this)">Quick View</button>
+                            <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="product-badge">New</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Royal Bridal Gown</h3>
+                        <p class="product-description">Stunning red bridal gown with heavy embroidery</p>
+                        <div class="product-price">
+                            <span class="current-price">₹8,500</span>
+                            <span class="original-price">₹11,000</span>
+                            <span class="discount">23% OFF</span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="party" data-price="4200" data-color="pink">
+                    <div class="product-image">
+                        <img src="../assets/lisitngs/IMG_20250715_093720_0783.JPG" alt="Party Gown">
+                        <div class="product-overlay">
+                            <button class="quick-view-btn" onclick="quickView(this)">Quick View</button>
+                            <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Elegant Party Gown</h3>
+                        <p class="product-description">Beautiful pink party gown for special celebrations</p>
+                        <div class="product-price">
+                            <span class="current-price">₹4,200</span>
+                            <span class="original-price">₹5,500</span>
+                            <span class="discount">24% OFF</span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="designer" data-price="6800" data-color="blue">
+                    <div class="product-image">
+                        <img src="../assets/lisitngs/IMG_20250715_093744_0002.JPG" alt="Designer Gown">
+                        <div class="product-overlay">
+                            <button class="quick-view-btn" onclick="quickView(this)">Quick View</button>
+                            <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="product-badge">Best Seller</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Designer Blue Gown</h3>
+                        <p class="product-description">Exquisite blue designer gown with intricate work</p>
+                        <div class="product-price">
+                            <span class="current-price">₹6,800</span>
+                            <span class="original-price">₹8,500</span>
+                            <span class="discount">20% OFF</span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="evening" data-price="3200" data-color="black">
+                    <div class="product-image">
+                        <img src="../assets/lisitngs/IMG_20250715_093755_0995.jpg" alt="Evening Gown">
+                        <div class="product-overlay">
+                            <button class="quick-view-btn" onclick="quickView(this)">Quick View</button>
+                            <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Classic Evening Gown</h3>
+                        <p class="product-description">Timeless black evening gown for formal events</p>
+                        <div class="product-price">
+                            <span class="current-price">₹3,200</span>
+                            <span class="original-price">₹4,000</span>
+                            <span class="discount">20% OFF</span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="bridal" data-price="9200" data-color="gold">
+                    <div class="product-image">
+                        <img src="../assets/lisitngs/IMG_20250715_093810_0693.jpg" alt="Gold Bridal Gown">
+                        <div class="product-overlay">
+                            <button class="quick-view-btn" onclick="quickView(this)">Quick View</button>
+                            <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Golden Bridal Gown</h3>
+                        <p class="product-description">Luxurious gold bridal gown with zari work</p>
+                        <div class="product-price">
+                            <span class="current-price">₹9,200</span>
+                            <span class="original-price">₹12,000</span>
+                            <span class="discount">23% OFF</span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="party" data-price="3800" data-color="purple">
+                    <div class="product-image">
+                        <img src="../assets/lisitngs/IMG-20250607-WA0021.jpg" alt="Purple Party Gown">
+                        <div class="product-overlay">
+                            <button class="quick-view-btn" onclick="quickView(this)">Quick View</button>
+                            <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Purple Party Gown</h3>
+                        <p class="product-description">Stunning purple party gown for special occasions</p>
+                        <div class="product-price">
+                            <span class="current-price">₹3,800</span>
+                            <span class="original-price">₹4,800</span>
+                            <span class="discount">21% OFF</span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="designer" data-price="7500" data-color="green">
+                    <div class="product-image">
+                        <img src="../assets/lisitngs/IMG-20250607-WA0022.jpg" alt="Green Designer Gown">
+                        <div class="product-overlay">
+                            <button class="quick-view-btn" onclick="quickView(this)">Quick View</button>
+                            <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Emerald Designer Gown</h3>
+                        <p class="product-description">Elegant green designer gown with heavy work</p>
+                        <div class="product-price">
+                            <span class="current-price">₹7,500</span>
+                            <span class="original-price">₹9,500</span>
+                            <span class="discount">21% OFF</span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="evening" data-price="2800" data-color="silver">
+                    <div class="product-image">
+                        <img src="../assets/lisitngs/IMG-20250607-WA0024.jpg" alt="Silver Evening Gown">
+                        <div class="product-overlay">
+                            <button class="quick-view-btn" onclick="quickView(this)">Quick View</button>
+                            <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Silver Evening Gown</h3>
+                        <p class="product-description">Glamorous silver evening gown for parties</p>
+                        <div class="product-price">
+                            <span class="current-price">₹2,800</span>
+                            <span class="original-price">₹3,500</span>
+                            <span class="discount">20% OFF</span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Load More Button -->
+    <section class="load-more-section">
+        <div class="container">
+            <button class="load-more-btn" onclick="loadMoreProducts()">Load More Products</button>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be displayed here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">₹0</span>
+            </div>
+            <button class="checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+        <div class="mobile-nav-item active">
+            <i class="fas fa-th-large"></i>
+            <span>Shop</span>
+        </div>
+        <div class="mobile-nav-item">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+            <span class="mobile-nav-badge mobile-cart-count">0</span>
+        </div>
+        <div class="mobile-nav-item">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </div>
+        <div class="mobile-nav-item">
+            <i class="fas fa-search"></i>
+            <span>Search</span>
+            <span class="mobile-nav-badge">1</span>
+        </div>
+    </nav>
+
+    <script src="script.js"></script>
+    <script>
+        // Category filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            const products = document.querySelectorAll('.product-card');
+            
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    const category = this.dataset.category;
+                    
+                    products.forEach(product => {
+                        if (category === 'all' || product.dataset.category === category) {
+                            product.style.display = 'block';
+                        } else {
+                            product.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+
+        // Filter functionality
+        function applyFilters() {
+            const priceFilter = document.getElementById('price-filter').value;
+            const colorFilter = document.getElementById('color-filter').value;
+            const products = document.querySelectorAll('.product-card');
+            
+            products.forEach(product => {
+                let show = true;
+                
+                if (priceFilter) {
+                    const price = parseInt(product.dataset.price);
+                    if (priceFilter === '0-2000' && price > 2000) show = false;
+                    if (priceFilter === '2000-5000' && (price < 2000 || price > 5000)) show = false;
+                    if (priceFilter === '5000-10000' && (price < 5000 || price > 10000)) show = false;
+                    if (priceFilter === '10000+' && price < 10000) show = false;
+                }
+                
+                if (colorFilter && product.dataset.color !== colorFilter) {
+                    show = false;
+                }
+                
+                product.style.display = show ? 'block' : 'none';
+            });
+        }
+
+        // Add event listeners to filters
+        document.getElementById('price-filter').addEventListener('change', applyFilters);
+        document.getElementById('color-filter').addEventListener('change', applyFilters);
+    </script>
+</body>
+</html>
+

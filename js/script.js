@@ -1,10 +1,76 @@
+// Helper to produce correct asset URL regardless of current page depth
+function getAssetPath(relativePath) {
+    try {
+        const inPagesDir = window.location && window.location.pathname.toLowerCase().includes('/pages/');
+        const cleaned = String(relativePath || '').replace(/^\.?\/+/, '');
+        return (inPagesDir ? '../' : '') + cleaned;
+    } catch (e) {
+        // Fallback if window is unavailable
+        return relativePath;
+    }
+}
+
+// Global function to render products on category pages
+function renderProducts(productList, container) {
+    if (!container || !productList || productList.length === 0) {
+        container.innerHTML = '<p>No products found in this category.</p>';
+        return;
+    }
+
+    container.innerHTML = productList.map(product => `
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="${getAssetPath(product.image)}" alt="${product.title}" class="product-image" loading="lazy">
+                ${product.discount ? `<div class="discount-badge">-${product.discount}%</div>` : ''}
+            </div>
+            <div class="product-info">
+                <div class="brand-name">${product.brand}</div>
+                <h3 class="product-title">${product.title}</h3>
+                <div class="price-section">
+                    <span class="current-price">Rs. ${product.currentPrice}</span>
+                    ${product.originalPrice > product.currentPrice ? `<span class="original-price">Rs. ${product.originalPrice}</span>` : ''}
+                </div>
+                <div class="rating-section">
+                    <div class="stars">
+                        ${generateStars(product.rating)}
+                    </div>
+                    <span class="review-count">${product.reviews} reviews</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+                    <i class="fas fa-shopping-cart"></i>
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Helper function to generate star ratings
+function generateStars(rating) {
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+    let starsHTML = '';
+    
+    for (let i = 0; i < 5; i++) {
+        if (i < fullStars) {
+            starsHTML += '<i class="fas fa-star star"></i>';
+        } else if (i === fullStars && hasHalfStar) {
+            starsHTML += '<i class="fas fa-star-half-alt star"></i>';
+        } else {
+            starsHTML += '<i class="far fa-star star empty"></i>';
+        }
+    }
+    
+    return starsHTML;
+}
+
 // Product data using the provided images
 const products = [
     {
         id: 1,
         title: "Beautiful Designer Wedding Special Velvet Saree",
         brand: "Fashion Hub",
-        image: "lisitngs/IMG_20250715_093634_0932.jpg",
+        image: "assets/lisitngs/IMG_20250715_093634_0932.jpg",
         currentPrice: 1399,
         originalPrice: 2199,
         discount: 36,
@@ -18,7 +84,7 @@ const products = [
         id: 2,
         title: "Elegant Designer Printed Gown",
         brand: "Fashion Hub",
-        image: "lisitngs/IMG_20250715_093657_0638.JPG",
+        image: "assets/lisitngs/IMG_20250715_093657_0638.JPG",
         currentPrice: 1099,
         originalPrice: 2100,
         discount: 48,
@@ -32,7 +98,7 @@ const products = [
         id: 3,
         title: "Elegant Heavy Fancy Silk Gown Set With Embroidered Dupatta",
         brand: "Fashion Hub",
-        image: "lisitngs/IMG_20250715_093720_0783.JPG",
+        image: "assets/lisitngs/IMG_20250715_093720_0783.JPG",
         currentPrice: 1249,
         originalPrice: 1999,
         discount: 38,
@@ -46,7 +112,7 @@ const products = [
         id: 4,
         title: "Fancy Border Premium Lace Work Silk Saree",
         brand: "Fashion Hub",
-        image: "lisitngs/IMG_20250715_093744_0002.JPG",
+        image: "assets/lisitngs/IMG_20250715_093744_0002.JPG",
         currentPrice: 1299,
         originalPrice: 2099,
         discount: 38,
@@ -60,7 +126,7 @@ const products = [
         id: 5,
         title: "PURE SOFT FOX GEORGETTE MOST TRENDING ANARKALI SUIT",
         brand: "Fashion Hub",
-        image: "lisitngs/IMG_20250715_093755_0995.jpg",
+        image: "assets/lisitngs/IMG_20250715_093755_0995.jpg",
         currentPrice: 1199,
         originalPrice: 1899,
         discount: 37,
@@ -74,7 +140,7 @@ const products = [
         id: 6,
         title: "Hug Demanded Cassata Work Anarakali Suit With Dupatta",
         brand: "Fashion Hub",
-        image: "lisitngs/IMG_20250715_093810_0693.jpg",
+        image: "assets/lisitngs/IMG_20250715_093810_0693.jpg",
         currentPrice: 1249,
         originalPrice: 1999,
         discount: 38,
@@ -88,7 +154,7 @@ const products = [
         id: 7,
         title: "Pure Soft Romaqnsilk Chanderi With Designer Dupatta",
         brand: "Fashion Hub",
-        image: "lisitngs/IMG-20250607-WA0021.jpg",
+        image: "assets/lisitngs/IMG-20250607-WA0021.jpg",
         currentPrice: 1449,
         originalPrice: 2299,
         discount: 37,
@@ -102,7 +168,7 @@ const products = [
         id: 8,
         title: "Ready to Wear Silk Saree with Designer Blouse",
         brand: "Fashion Hub",
-        image: "lisitngs/IMG-20250607-WA0022.jpg",
+        image: "assets/lisitngs/IMG-20250607-WA0022.jpg",
         currentPrice: 1299,
         originalPrice: 1999,
         discount: 35,
@@ -116,7 +182,7 @@ const products = [
         id: 9,
         title: "Wedding Special Heavy Embroidered Saree",
         brand: "Fashion Hub",
-        image: "lisitngs/IMG-20250607-WA0024.jpg",
+        image: "assets/lisitngs/IMG-20250607-WA0024.jpg",
         currentPrice: 2499,
         originalPrice: 3999,
         discount: 38,
@@ -130,7 +196,7 @@ const products = [
         id: 10,
         title: "Bollywood Style Designer Saree with Sequins",
         brand: "Fashion Hub",
-        image: "lisitngs/IMG-20250607-WA0025.jpg",
+        image: "assets/lisitngs/IMG-20250607-WA0025.jpg",
         currentPrice: 1799,
         originalPrice: 2799,
         discount: 36,
@@ -144,7 +210,7 @@ const products = [
         id: 11,
         title: "One Minute Easy Wear Saree with Pre-stitched Pallu",
         brand: "Fashion Hub",
-        image: "lisitngs/IMG_20250715_093634_0932.jpg",
+        image: "assets/lisitngs/IMG_20250715_093634_0932.jpg",
         currentPrice: 999,
         originalPrice: 1599,
         discount: 38,
@@ -158,7 +224,7 @@ const products = [
         id: 12,
         title: "Party Wear Glamorous Saree with Heavy Work",
         brand: "Fashion Hub",
-        image: "lisitngs/IMG_20250715_093657_0638.JPG",
+        image: "assets/lisitngs/IMG_20250715_093657_0638.JPG",
         currentPrice: 1899,
         originalPrice: 2999,
         discount: 37,
@@ -172,7 +238,7 @@ const products = [
         id: 13,
         title: "PURE SOFT LIGHTWEIGHT GEORGETTE ANARKALI GOWN",
         brand: "Fashion Hub",
-        image: "lisitngs/IMG-20250607-WA0022.jpg",
+        image: "assets/lisitngs/IMG-20250607-WA0022.jpg",
         currentPrice: 1199,
         originalPrice: 1899,
         discount: 37,
@@ -183,10 +249,10 @@ const products = [
         isBestSelling: false
     },
     {
-        id: 9,
+        id: 19,
         title: "Elegant Designer Silk Lehenga with Heavy Embroidery",
         brand: "Fashion Hub",
-        image: "lisitngs/IMG-20250607-WA0024.jpg",
+        image: "assets/lisitngs/IMG-20250607-WA0024.jpg",
         currentPrice: 1599,
         originalPrice: 2499,
         discount: 36,
@@ -197,10 +263,10 @@ const products = [
         isBestSelling: false
     },
     {
-        id: 10,
+        id: 20,
         title: "Premium Designer Wedding Lehenga Set",
         brand: "Fashion Hub",
-        image: "lisitngs/IMG-20250607-WA0025.jpg",
+        image: "assets/lisitngs/IMG-20250607-WA0025.jpg",
         currentPrice: 1799,
         originalPrice: 2899,
         discount: 38,
@@ -211,10 +277,10 @@ const products = [
         isBestSelling: false
     },
     {
-        id: 11,
+        id: 21,
         title: "Traditional Embroidered Anarkali Dress",
         brand: "Fashion Hub",
-        image: "lisitngs/IMG-20250609-WA0004.jpg",
+        image: "assets/lisitngs/IMG-20250609-WA0004.jpg",
         currentPrice: 1349,
         originalPrice: 2199,
         discount: 39,
@@ -225,10 +291,10 @@ const products = [
         isBestSelling: false
     },
     {
-        id: 12,
+        id: 22,
         title: "Designer Party Wear Gown with Dupatta",
         brand: "Fashion Hub",
-        image: "lisitngs/IMG-20250628-WA0030.jpg",
+        image: "assets/lisitngs/IMG-20250628-WA0030.jpg",
         currentPrice: 1399,
         originalPrice: 2299,
         discount: 39,
@@ -239,10 +305,10 @@ const products = [
         isBestSelling: false
     },
     {
-        id: 13,
+        id: 23,
         title: "Luxury Silk Saree with Golden Border",
         brand: "Fashion Hub",
-        image: "lisitngs/IMG-20250628-WA0041.jpg",
+        image: "assets/lisitngs/IMG-20250628-WA0041.jpg",
         currentPrice: 1499,
         originalPrice: 2399,
         discount: 38,
@@ -253,10 +319,10 @@ const products = [
         isBestSelling: false
     },
     {
-        id: 14,
+        id: 24,
         title: "Elegant Designer Kurti Set with Palazzo",
         brand: "Fashion Hub",
-        image: "lisitngs/IMG-20250628-WA0065.jpg",
+        image: "assets/lisitngs/IMG-20250628-WA0065.jpg",
         currentPrice: 1099,
         originalPrice: 1799,
         discount: 39,
@@ -285,12 +351,76 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCartUI();
     initializeSlider();
     setupEventListeners();
+    injectPromoBanner();
+    
+    // Auto-load products for category pages
+    autoLoadCategoryProducts();
 });
 
 // Close banner functionality
 function closeBanner() {
     const banner = document.querySelector('.top-banner');
     banner.style.display = 'none';
+}
+
+// Function to automatically load products on category pages
+function autoLoadCategoryProducts() {
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    if (currentPage.includes('saree') || currentPage.includes('lehenga') || 
+        currentPage.includes('gown') || currentPage.includes('kurti') || 
+        currentPage.includes('anarkali')) {
+        
+        let categoryProducts = [];
+        let containerId = 'products-grid';
+        
+        // Determine category and container
+        if (currentPage.includes('ready-to-wear-saree')) {
+            categoryProducts = products.filter(product => 
+                product.category === 'saree' && product.title.toLowerCase().includes('ready')
+            );
+            containerId = 'ready-wear-saree-products';
+        } else if (currentPage.includes('wedding-saree')) {
+            categoryProducts = products.filter(product => 
+                product.category === 'saree' && product.title.toLowerCase().includes('wedding')
+            );
+            containerId = 'wedding-saree-products';
+        } else if (currentPage.includes('bollywood-saree')) {
+            categoryProducts = products.filter(product => 
+                product.category === 'saree' && product.title.toLowerCase().includes('bollywood')
+            );
+            containerId = 'bollywood-saree-products';
+        } else if (currentPage.includes('one-minute-saree')) {
+            categoryProducts = products.filter(product => 
+                product.category === 'saree' && product.title.toLowerCase().includes('one minute')
+            );
+            containerId = 'one-minute-saree-products';
+        } else if (currentPage.includes('party-wear-saree')) {
+            categoryProducts = products.filter(product => 
+                product.category === 'saree' && product.title.toLowerCase().includes('party')
+            );
+            containerId = 'party-wear-saree-products';
+        } else if (currentPage.includes('lehenga')) {
+            categoryProducts = products.filter(product => product.category === 'lehenga');
+            containerId = 'lehenga-products';
+        } else if (currentPage.includes('gown')) {
+            categoryProducts = products.filter(product => product.category === 'gown');
+            containerId = 'gown-products';
+        } else if (currentPage.includes('kurti')) {
+            categoryProducts = products.filter(product => product.category === 'kurti');
+            containerId = 'kurti-products';
+        } else if (currentPage.includes('anarkali')) {
+            categoryProducts = products.filter(product => product.category === 'anarkali');
+            containerId = 'anarkali-products';
+        }
+        
+        // Try to find the container
+        let container = document.getElementById(containerId) || document.getElementById('products-grid');
+        
+        if (container && categoryProducts.length > 0) {
+            renderProducts(categoryProducts, container);
+        }
+    }
 }
 
 // Product loading functions
@@ -309,129 +439,13 @@ function loadNewArrivals() {
     renderProducts(newArrivals, newArrivalsProducts);
 }
 
-// Pagination variables
-const PRODUCTS_PER_PAGE = 9;
-let currentPage = 1;
-
-function renderProducts(productList, container, showPagination = false) {
+function renderProducts(productList, container) {
     container.innerHTML = '';
     
-    let productsToShow = productList;
-    
-    if (showPagination) {
-        const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
-        const endIndex = startIndex + PRODUCTS_PER_PAGE;
-        productsToShow = productList.slice(startIndex, endIndex);
-        
-        // Add pagination after rendering products
-        setTimeout(() => {
-            const paginationContainer = container.parentNode.querySelector('.pagination') || 
-                                      createPaginationContainer(container.parentNode);
-            renderPagination(paginationContainer, productList.length, currentPage, productList, container);
-        }, 0);
-    }
-    
-    productsToShow.forEach(product => {
+    productList.forEach(product => {
         const productCard = createProductCard(product);
         container.appendChild(productCard);
     });
-}
-
-// Create pagination container
-function createPaginationContainer(parent) {
-    let paginationDiv = parent.querySelector('.pagination');
-    if (!paginationDiv) {
-        paginationDiv = document.createElement('div');
-        paginationDiv.className = 'pagination';
-        parent.appendChild(paginationDiv);
-    }
-    return paginationDiv;
-}
-
-// Render pagination
-function renderPagination(container, totalProducts, current, productList, productsContainer) {
-    const totalPages = Math.ceil(totalProducts / PRODUCTS_PER_PAGE);
-    if (totalPages <= 1) {
-        container.innerHTML = '';
-        return;
-    }
-    
-    let paginationHTML = '';
-    
-    // Previous button
-    if (current > 1) {
-        paginationHTML += `<a href="#" onclick="changePage(${current - 1}, event)" class="prev">Previous</a>`;
-    } else {
-        paginationHTML += `<span class="prev disabled">Previous</span>`;
-    }
-    
-    // Page numbers
-    const startPage = Math.max(1, current - 2);
-    const endPage = Math.min(totalPages, current + 2);
-    
-    if (startPage > 1) {
-        paginationHTML += `<a href="#" onclick="changePage(1, event)">1</a>`;
-        if (startPage > 2) {
-            paginationHTML += `<span>...</span>`;
-        }
-    }
-    
-    for (let i = startPage; i <= endPage; i++) {
-        if (i === current) {
-            paginationHTML += `<span class="current">${i}</span>`;
-        } else {
-            paginationHTML += `<a href="#" onclick="changePage(${i}, event)">${i}</a>`;
-        }
-    }
-    
-    if (endPage < totalPages) {
-        if (endPage < totalPages - 1) {
-            paginationHTML += `<span>...</span>`;
-        }
-        paginationHTML += `<a href="#" onclick="changePage(${totalPages}, event)">${totalPages}</a>`;
-    }
-    
-    // Next button
-    if (current < totalPages) {
-        paginationHTML += `<a href="#" onclick="changePage(${current + 1}, event)" class="next">Next</a>`;
-    } else {
-        paginationHTML += `<span class="next disabled">Next</span>`;
-    }
-    
-    container.innerHTML = paginationHTML;
-    
-    // Store references for changePage function
-    container.dataset.productList = JSON.stringify(productList.map(p => p.id));
-    container.dataset.containerId = productsContainer.id || 'products';
-}
-
-// Change page function
-function changePage(page, event) {
-    if (event) {
-        event.preventDefault();
-    }
-    
-    currentPage = page;
-    
-    // Find the pagination container and get stored data
-    const paginationContainer = document.querySelector('.pagination');
-    if (paginationContainer) {
-        const productIds = JSON.parse(paginationContainer.dataset.productList || '[]');
-        const containerId = paginationContainer.dataset.containerId;
-        const container = document.getElementById(containerId);
-        
-        if (container && productIds.length > 0) {
-            // Get the full product list based on stored IDs
-            const productList = products.filter(p => productIds.includes(p.id));
-            renderProducts(productList, container, true);
-        }
-    }
-    
-    // Scroll to top of products section
-    const productsSection = document.querySelector('.products-section') || document.querySelector('.best-selling');
-    if (productsSection) {
-        productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
 }
 
 function createProductCard(product) {
@@ -443,7 +457,7 @@ function createProductCard(product) {
     
     card.innerHTML = `
         <div class="product-image-container">
-            <img src="${product.image}" alt="${product.title}" class="product-image" loading="lazy">
+            <img src="${getAssetPath(product.image)}" alt="${product.title}" class="product-image" loading="lazy">
             ${discountBadge}
         </div>
         <div class="product-info">
@@ -464,6 +478,13 @@ function createProductCard(product) {
             </button>
         </div>
     `;
+    
+    // Add click event to navigate to product detail
+    card.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('add-to-cart-btn')) {
+            window.location.href = `pages/product-detail.html?id=${product.id}`;
+        }
+    });
     
     return card;
 }
@@ -502,7 +523,7 @@ function addToCart(productId) {
         cart.push({
             id: product.id,
             title: product.title,
-            image: product.image,
+            image: getAssetPath(product.image),
             price: product.currentPrice,
             quantity: 1
         });
@@ -634,6 +655,25 @@ function updateWishlistUI() {
     wishlistCount.textContent = wishlist.length;
 }
 
+// Inject promo banner above footer on every page
+function injectPromoBanner() {
+    const footer = document.querySelector('footer.footer');
+    if (!footer) return;
+
+    // Prevent duplicate injection
+    if (document.querySelector('.promo-banner')) return;
+
+    const bannerWrapper = document.createElement('section');
+    bannerWrapper.className = 'promo-banner';
+
+    const bannerInner = document.createElement('div');
+    bannerInner.className = 'promo-banner-inner';
+    bannerInner.style.backgroundImage = `url('${getAssetPath('assets/images/Screenshot 2025-09-02 114712.png')}')`;
+
+    bannerWrapper.appendChild(bannerInner);
+    footer.parentNode.insertBefore(bannerWrapper, footer);
+}
+
 // Quick view functionality
 function quickView(productId) {
     const product = products.find(p => p.id === productId);
@@ -647,7 +687,7 @@ function quickView(productId) {
             <span class="close" onclick="closeModal()">&times;</span>
             <div class="quick-view-content">
                 <div class="quick-view-image">
-                    <img src="${product.image}" alt="${product.title}">
+                    <img src="${getAssetPath(product.image)}" alt="${product.title}">
                 </div>
                 <div class="quick-view-info">
                     <h2>${product.title}</h2>
@@ -1020,4 +1060,53 @@ if ('IntersectionObserver' in window) {
     document.querySelectorAll('img[loading="lazy"]').forEach(img => {
         imageObserver.observe(img);
     });
+}
+
+// Mobile Menu Toggle
+function toggleMobileMenu() {
+    const nav = document.querySelector('.nav');
+    if (nav) {
+        nav.classList.toggle('mobile-nav-open');
+    }
+}
+
+// Update Mobile Cart Count
+function updateMobileCartCount() {
+    const mobileCartCount = document.getElementById('mobile-cart-count');
+    if (mobileCartCount) {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        mobileCartCount.textContent = totalItems;
+        
+        // Show/hide badge based on count
+        if (totalItems > 0) {
+            mobileCartCount.style.display = 'flex';
+        } else {
+            mobileCartCount.style.display = 'none';
+        }
+    }
+}
+
+// Mobile Features Initialization
+function initializeMobileFeatures() {
+    // Update mobile cart count
+    updateMobileCartCount();
+    
+    // Initialize mobile navigation
+    const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+    
+    mobileNavItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            // Remove active class from all items
+            mobileNavItems.forEach(nav => nav.classList.remove('active'));
+            
+            // Add active class to clicked item
+            this.classList.add('active');
+        });
+    });
+    
+    // Setup mobile menu toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+    }
 }

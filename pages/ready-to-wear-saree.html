@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One Minute Saree - Fashion Hub</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Ready to Wear Saree - Fashion Hub</title>
+    <link rel="stylesheet" href="../css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -23,12 +23,14 @@
     <header class="header">
         <div class="container">
             <div class="logo">
-                <img src="fashion_hub logo.svg" alt="Fashion Hub" class="logo-img">
+                <a href="../index.html">
+                    <img src="../assets/logos/fashion_hub logo.svg" alt="Fashion Hub" class="logo-img">
+                </a>
             </div>
             
             <nav class="nav">
                 <ul>
-                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="../index.html">HOME</a></li>
                     <li class="dropdown">
                         <a href="#saree">SAREE <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
@@ -82,18 +84,12 @@
         </div>
     </header>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1>One Minute Saree</h1>
-            <p>Quick and easy to wear sarees that look stunning in just one minute</p>
-        </div>
-    </section>
+
 
     <!-- Products Section -->
     <section class="products-section">
         <div class="container">
-            <div class="products-grid" id="one-minute-saree-products">
+            <div class="products-grid" id="ready-wear-saree-products">
                 <!-- Products will be loaded here by JavaScript -->
             </div>
         </div>
@@ -153,7 +149,7 @@
                 <div class="footer-section">
                     <h3>CATEGORY</h3>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="../index.html">Home</a></li>
                         <li><a href="#saree">Saree</a></li>
                         <li><a href="#sale">Sale</a></li>
                         <li><a href="#lehenga">Lehenga Set</a></li>
@@ -187,26 +183,118 @@
         </a>
     </div>
 
-    <script src="script.js"></script>
+    <script src="../js/script.js"></script>
     <script>
-        // Load one minute saree products with pagination
+        // Load ready to wear saree products
         document.addEventListener('DOMContentLoaded', function() {
-            let oneMinuteSareeProducts = products.filter(product => 
-                product.category === 'saree' && product.title.toLowerCase().includes('minute')
-            );
+            // Get products from the main script
+            if (typeof products !== 'undefined') {
+                const readyWearSareeProducts = products.filter(product => 
+                    product.category === 'saree' && (product.title.toLowerCase().includes('ready') || product.title.toLowerCase().includes('silk'))
+                );
+                
+                if (typeof renderProducts === 'function') {
+                    renderProducts(readyWearSareeProducts, document.getElementById('ready-wear-saree-products'));
+                } else {
+                    // Fallback: display products manually if renderProducts function is not available
+                    displayProducts(readyWearSareeProducts, document.getElementById('ready-wear-saree-products'));
+                }
+            } else {
+                // If products array is not available, create some sample ready-to-wear saree products
+                const sampleProducts = [
+                    {
+                        id: 8,
+                        title: "Ready to Wear Silk Saree with Designer Blouse",
+                        brand: "Fashion Hub",
+                        image: "assets/lisitngs/IMG-20250607-WA0022.jpg",
+                        currentPrice: 1299,
+                        originalPrice: 1999,
+                        discount: 35,
+                        rating: 4.4,
+                        reviews: 156,
+                        category: "saree"
+                    },
+                    {
+                        id: 4,
+                        title: "Fancy Border Premium Lace Work Silk Saree",
+                        brand: "Fashion Hub",
+                        image: "assets/lisitngs/IMG_20250715_093744_0002.jpg",
+                        currentPrice: 1299,
+                        originalPrice: 2099,
+                        discount: 38,
+                        rating: 4.4,
+                        reviews: 98,
+                        category: "saree"
+                    },
+                    {
+                        id: 1,
+                        title: "Beautiful Designer Wedding Special Velvet Saree",
+                        brand: "Fashion Hub",
+                        image: "assets/lisitngs/IMG_20250715_093634_0932.jpg",
+                        currentPrice: 1399,
+                        originalPrice: 2199,
+                        discount: 36,
+                        rating: 4.5,
+                        reviews: 127,
+                        category: "saree"
+                    }
+                ];
+                displayProducts(sampleProducts, document.getElementById('ready-wear-saree-products'));
+            }
+        });
+
+        // Fallback function to display products
+        function displayProducts(products, container) {
+            if (!container || !products || products.length === 0) {
+                container.innerHTML = '<p>No products found in this category.</p>';
+                return;
+            }
+
+            container.innerHTML = products.map(product => `
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="../${product.image}" alt="${product.title}" class="product-image">
+                        ${product.discount ? `<div class="discount-badge">-${product.discount}%</div>` : ''}
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">${product.brand}</div>
+                        <h3 class="product-title">${product.title}</h3>
+                        <div class="price-section">
+                            <span class="current-price">Rs. ${product.currentPrice}</span>
+                            ${product.originalPrice > product.currentPrice ? `<span class="original-price">Rs. ${product.originalPrice}</span>` : ''}
+                        </div>
+                        <div class="rating-section">
+                            <div class="stars">
+                                ${generateStars(product.rating)}
+                            </div>
+                            <span class="review-count">${product.reviews} reviews</span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function generateStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            let starsHTML = '';
             
-            // If not enough products, duplicate some to demonstrate pagination
-            while (oneMinuteSareeProducts.length < 15) {
-                const additionalProducts = oneMinuteSareeProducts.map((product, index) => ({
-                    ...product,
-                    id: product.id + (oneMinuteSareeProducts.length * 100) + index,
-                    title: product.title + ` (Style ${Math.floor(Math.random() * 100)})`
-                }));
-                oneMinuteSareeProducts = [...oneMinuteSareeProducts, ...additionalProducts];
+            for (let i = 0; i < 5; i++) {
+                if (i < fullStars) {
+                    starsHTML += '<i class="fas fa-star star"></i>';
+                } else if (i === fullStars && hasHalfStar) {
+                    starsHTML += '<i class="fas fa-star-half-alt star"></i>';
+                } else {
+                    starsHTML += '<i class="far fa-star star empty"></i>';
+                }
             }
             
-            renderProducts(oneMinuteSareeProducts, document.getElementById('one-minute-saree-products'), true);
-        });
+            return starsHTML;
+        }
     </script>
 </body>
 </html>

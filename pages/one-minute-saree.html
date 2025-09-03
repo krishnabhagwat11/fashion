@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ready to Wear Saree - Fashion Hub</title>
+    <title>One Minute Saree - Fashion Hub</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -85,15 +85,15 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1>Ready to Wear Saree</h1>
-            <p>Discover our stunning collection of ready-to-wear sarees perfect for any occasion</p>
+            <h1>One Minute Saree</h1>
+            <p>Quick and easy to wear sarees that look stunning in just one minute</p>
         </div>
     </section>
 
     <!-- Products Section -->
     <section class="products-section">
         <div class="container">
-            <div class="products-grid" id="ready-wear-saree-products">
+            <div class="products-grid" id="one-minute-saree-products">
                 <!-- Products will be loaded here by JavaScript -->
             </div>
         </div>
@@ -187,25 +187,14 @@
         </a>
     </div>
 
-    <script src="script.js"></script>
+    <script src="../js/script.js"></script>
     <script>
-        // Load ready to wear saree products with pagination
+        // Load one minute saree products
         document.addEventListener('DOMContentLoaded', function() {
-            let readyWearSareeProducts = products.filter(product => 
-                product.category === 'saree'
+            const oneMinuteSareeProducts = products.filter(product => 
+                product.category === 'saree' && product.title.toLowerCase().includes('minute')
             );
-            
-            // If not enough products, duplicate some to demonstrate pagination
-            while (readyWearSareeProducts.length < 18) {
-                const additionalProducts = readyWearSareeProducts.map((product, index) => ({
-                    ...product,
-                    id: product.id + (readyWearSareeProducts.length * 100) + index,
-                    title: product.title + ` (Collection ${Math.floor(Math.random() * 100)})`
-                }));
-                readyWearSareeProducts = [...readyWearSareeProducts, ...additionalProducts];
-            }
-            
-            renderProducts(readyWearSareeProducts, document.getElementById('ready-wear-saree-products'), true);
+            renderProducts(oneMinuteSareeProducts, document.getElementById('one-minute-saree-products'));
         });
     </script>
 </body>
