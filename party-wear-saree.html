@@ -189,12 +189,23 @@
 
     <script src="script.js"></script>
     <script>
-        // Load party wear saree products
+        // Load party wear saree products with pagination
         document.addEventListener('DOMContentLoaded', function() {
-            const partyWearSareeProducts = products.filter(product => 
-                product.category === 'saree' && product.title.toLowerCase().includes('party')
+            let partyWearSareeProducts = products.filter(product => 
+                product.category === 'saree'
             );
-            renderProducts(partyWearSareeProducts, document.getElementById('party-wear-saree-products'));
+            
+            // If not enough products, duplicate some to demonstrate pagination
+            while (partyWearSareeProducts.length < 18) {
+                const additionalProducts = partyWearSareeProducts.map((product, index) => ({
+                    ...product,
+                    id: product.id + (partyWearSareeProducts.length * 100) + index,
+                    title: product.title + ` (Party Collection ${Math.floor(Math.random() * 100)})`
+                }));
+                partyWearSareeProducts = [...partyWearSareeProducts, ...additionalProducts];
+            }
+            
+            renderProducts(partyWearSareeProducts, document.getElementById('party-wear-saree-products'), true);
         });
     </script>
 </body>

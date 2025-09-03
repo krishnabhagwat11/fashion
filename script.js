@@ -309,13 +309,129 @@ function loadNewArrivals() {
     renderProducts(newArrivals, newArrivalsProducts);
 }
 
-function renderProducts(productList, container) {
+// Pagination variables
+const PRODUCTS_PER_PAGE = 9;
+let currentPage = 1;
+
+function renderProducts(productList, container, showPagination = false) {
     container.innerHTML = '';
     
-    productList.forEach(product => {
+    let productsToShow = productList;
+    
+    if (showPagination) {
+        const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
+        const endIndex = startIndex + PRODUCTS_PER_PAGE;
+        productsToShow = productList.slice(startIndex, endIndex);
+        
+        // Add pagination after rendering products
+        setTimeout(() => {
+            const paginationContainer = container.parentNode.querySelector('.pagination') || 
+                                      createPaginationContainer(container.parentNode);
+            renderPagination(paginationContainer, productList.length, currentPage, productList, container);
+        }, 0);
+    }
+    
+    productsToShow.forEach(product => {
         const productCard = createProductCard(product);
         container.appendChild(productCard);
     });
+}
+
+// Create pagination container
+function createPaginationContainer(parent) {
+    let paginationDiv = parent.querySelector('.pagination');
+    if (!paginationDiv) {
+        paginationDiv = document.createElement('div');
+        paginationDiv.className = 'pagination';
+        parent.appendChild(paginationDiv);
+    }
+    return paginationDiv;
+}
+
+// Render pagination
+function renderPagination(container, totalProducts, current, productList, productsContainer) {
+    const totalPages = Math.ceil(totalProducts / PRODUCTS_PER_PAGE);
+    if (totalPages <= 1) {
+        container.innerHTML = '';
+        return;
+    }
+    
+    let paginationHTML = '';
+    
+    // Previous button
+    if (current > 1) {
+        paginationHTML += `<a href="#" onclick="changePage(${current - 1}, event)" class="prev">Previous</a>`;
+    } else {
+        paginationHTML += `<span class="prev disabled">Previous</span>`;
+    }
+    
+    // Page numbers
+    const startPage = Math.max(1, current - 2);
+    const endPage = Math.min(totalPages, current + 2);
+    
+    if (startPage > 1) {
+        paginationHTML += `<a href="#" onclick="changePage(1, event)">1</a>`;
+        if (startPage > 2) {
+            paginationHTML += `<span>...</span>`;
+        }
+    }
+    
+    for (let i = startPage; i <= endPage; i++) {
+        if (i === current) {
+            paginationHTML += `<span class="current">${i}</span>`;
+        } else {
+            paginationHTML += `<a href="#" onclick="changePage(${i}, event)">${i}</a>`;
+        }
+    }
+    
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+            paginationHTML += `<span>...</span>`;
+        }
+        paginationHTML += `<a href="#" onclick="changePage(${totalPages}, event)">${totalPages}</a>`;
+    }
+    
+    // Next button
+    if (current < totalPages) {
+        paginationHTML += `<a href="#" onclick="changePage(${current + 1}, event)" class="next">Next</a>`;
+    } else {
+        paginationHTML += `<span class="next disabled">Next</span>`;
+    }
+    
+    container.innerHTML = paginationHTML;
+    
+    // Store references for changePage function
+    container.dataset.productList = JSON.stringify(productList.map(p => p.id));
+    container.dataset.containerId = productsContainer.id || 'products';
+}
+
+// Change page function
+function changePage(page, event) {
+    if (event) {
+        event.preventDefault();
+    }
+    
+    currentPage = page;
+    
+    // Find the pagination container and get stored data
+    const paginationContainer = document.querySelector('.pagination');
+    if (paginationContainer) {
+        const productIds = JSON.parse(paginationContainer.dataset.productList || '[]');
+        const containerId = paginationContainer.dataset.containerId;
+        const container = document.getElementById(containerId);
+        
+        if (container && productIds.length > 0) {
+            // Get the full product list based on stored IDs
+            const productList = products.filter(p => productIds.includes(p.id));
+            renderProducts(productList, container, true);
+        }
+    }
+    
+    // Scroll to top of products section
+    const productsSection = document.querySelector('.products-section') || document.querySelector('.best-selling');
+    if (productsSection) {
+        productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 }
 
 function createProductCard(product) {
@@ -348,13 +464,6 @@ function createProductCard(product) {
             </button>
         </div>
     `;
-    
-    // Add click event to navigate to product detail
-    card.addEventListener('click', (e) => {
-        if (!e.target.classList.contains('add-to-cart-btn')) {
-            window.location.href = `product-detail.html?id=${product.id}`;
-        }
-    });
     
     return card;
 }
@@ -911,53 +1020,4 @@ if ('IntersectionObserver' in window) {
     document.querySelectorAll('img[loading="lazy"]').forEach(img => {
         imageObserver.observe(img);
     });
-}
-
-// Mobile Menu Toggle
-function toggleMobileMenu() {
-    const nav = document.querySelector('.nav');
-    if (nav) {
-        nav.classList.toggle('mobile-nav-open');
-    }
-}
-
-// Update Mobile Cart Count
-function updateMobileCartCount() {
-    const mobileCartCount = document.getElementById('mobile-cart-count');
-    if (mobileCartCount) {
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        mobileCartCount.textContent = totalItems;
-        
-        // Show/hide badge based on count
-        if (totalItems > 0) {
-            mobileCartCount.style.display = 'flex';
-        } else {
-            mobileCartCount.style.display = 'none';
-        }
-    }
-}
-
-// Mobile Features Initialization
-function initializeMobileFeatures() {
-    // Update mobile cart count
-    updateMobileCartCount();
-    
-    // Initialize mobile navigation
-    const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
-    
-    mobileNavItems.forEach(item => {
-        item.addEventListener('click', function(e) {
-            // Remove active class from all items
-            mobileNavItems.forEach(nav => nav.classList.remove('active'));
-            
-            // Add active class to clicked item
-            this.classList.add('active');
-        });
-    });
-    
-    // Setup mobile menu toggle
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
-    }
 }

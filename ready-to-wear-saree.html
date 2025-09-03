@@ -189,12 +189,23 @@
 
     <script src="script.js"></script>
     <script>
-        // Load ready to wear saree products
+        // Load ready to wear saree products with pagination
         document.addEventListener('DOMContentLoaded', function() {
-            const readyWearSareeProducts = products.filter(product => 
-                product.category === 'saree' && product.title.toLowerCase().includes('ready')
+            let readyWearSareeProducts = products.filter(product => 
+                product.category === 'saree'
             );
-            renderProducts(readyWearSareeProducts, document.getElementById('ready-wear-saree-products'));
+            
+            // If not enough products, duplicate some to demonstrate pagination
+            while (readyWearSareeProducts.length < 18) {
+                const additionalProducts = readyWearSareeProducts.map((product, index) => ({
+                    ...product,
+                    id: product.id + (readyWearSareeProducts.length * 100) + index,
+                    title: product.title + ` (Collection ${Math.floor(Math.random() * 100)})`
+                }));
+                readyWearSareeProducts = [...readyWearSareeProducts, ...additionalProducts];
+            }
+            
+            renderProducts(readyWearSareeProducts, document.getElementById('ready-wear-saree-products'), true);
         });
     </script>
 </body>

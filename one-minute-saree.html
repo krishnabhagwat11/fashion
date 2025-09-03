@@ -189,12 +189,23 @@
 
     <script src="script.js"></script>
     <script>
-        // Load one minute saree products
+        // Load one minute saree products with pagination
         document.addEventListener('DOMContentLoaded', function() {
-            const oneMinuteSareeProducts = products.filter(product => 
+            let oneMinuteSareeProducts = products.filter(product => 
                 product.category === 'saree' && product.title.toLowerCase().includes('minute')
             );
-            renderProducts(oneMinuteSareeProducts, document.getElementById('one-minute-saree-products'));
+            
+            // If not enough products, duplicate some to demonstrate pagination
+            while (oneMinuteSareeProducts.length < 15) {
+                const additionalProducts = oneMinuteSareeProducts.map((product, index) => ({
+                    ...product,
+                    id: product.id + (oneMinuteSareeProducts.length * 100) + index,
+                    title: product.title + ` (Style ${Math.floor(Math.random() * 100)})`
+                }));
+                oneMinuteSareeProducts = [...oneMinuteSareeProducts, ...additionalProducts];
+            }
+            
+            renderProducts(oneMinuteSareeProducts, document.getElementById('one-minute-saree-products'), true);
         });
     </script>
 </body>
