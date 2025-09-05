@@ -272,12 +272,6 @@ function addToCartFromCard(productId) {
     showNotification('Product added to cart successfully!', 'success');
 }
 
-// Buy now functionality
-function buyNow() {
-    addToCart();
-    // Redirect to checkout page
-    window.location.href = 'checkout.html';
-}
 
 // Add to wishlist
 function addToWishlist() {
@@ -371,25 +365,31 @@ function removeFromCart(productId, size) {
 }
 
 // Proceed to checkout
-function proceedToCheckout() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    if (cart.length === 0) {
-        showNotification('Your cart is empty!', 'error');
-        return;
-    }
-    window.location.href = 'checkout.html';
-}
 
 // Send WhatsApp enquiry
 function sendWhatsAppEnquiry() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let message = 'Hi! I\'m interested in the following products:\n\n';
     
-    cart.forEach(item => {
-        message += `• ${item.title} (Size: ${item.size}, Qty: ${item.quantity}) - Rs. ${item.total}\n`;
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+    }
+    
+    let message = 'Hello! I am interested in the following products from Fashion Hub:\n\n';
+    
+    cart.forEach((item, index) => {
+        message += `${index + 1}. ${item.title}\n`;
+        message += `   Price: Rs. ${item.price}\n`;
+        message += `   Quantity: ${item.quantity}\n`;
+        if (item.size) {
+            message += `   Size: ${item.size}\n`;
+        }
+        message += '\n';
     });
     
-    message += `\nTotal: Rs. ${cart.reduce((total, item) => total + item.total, 0)}`;
+    const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    message += `Total Amount: Rs. ${totalPrice}\n\n`;
+    message += 'Please provide more details about availability and delivery.';
     
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/919898005546?text=${encodedMessage}`, '_blank');

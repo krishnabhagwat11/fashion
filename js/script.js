@@ -11,6 +11,7 @@ function getAssetPath(relativePath) {
     }
 }
 
+
 // Global function to render products on category pages
 function renderProducts(productList, container) {
     if (!container || !productList || productList.length === 0) {
@@ -197,15 +198,20 @@ const products = [
     },
     {
         id: 8,
-        title: "Gorgett fabrics beautiful Anarkali gown",
+        title: "Premium Designer Anarkali Collection",
         brand: "Fashion Hub",
-        image: "assets/lisitngs/IMG-20250607-WA0022.jpg",
+        image: "assets/listings images/part2/aa2.jpg",
+        images: [
+            "assets/listings images/part2/aa2.jpg",
+            "assets/listings images/part2/aa3.jpg",
+            
+        ],
         currentPrice: 1299,
         originalPrice: 1999,
         discount: 35,
         rating: 4.4,
         reviews: 156,
-        category: "saree",
+        category: "anarkali",
         isNew: true,
         isBestSelling: false
     },
@@ -230,9 +236,14 @@ const products = [
     },
     {
         id: 10,
-        title: "Chanderi silk fabric latest dress",
+        title: "Elegant Silk Saree Collection",
         brand: "Fashion Hub",
-        image: "assets/lisitngs/IMG-20250607-WA0025.jpg",
+        image: "assets/listings images/part2/bb1.jpg",
+        images: [
+            "assets/listings images/part2/bb1.jpg",
+            "assets/listings images/part2/bb2.jpg",
+            "assets/listings images/part2/bb3.jpg"
+        ],
         currentPrice: 1799,
         originalPrice: 2799,
         discount: 36,
@@ -244,15 +255,20 @@ const products = [
     },
     {
         id: 11,
-        title: "Embodied anarkali with full selves",
+        title: "Designer Kurti Collection",
         brand: "Fashion Hub",
-        image: "assets/lisitngs/IMG_20250715_093634_0932.jpg",
+        image: "assets/listings images/part2/cc1.jpg",
+        images: [
+            "assets/listings images/part2/cc1.jpg",
+            "assets/listings images/part2/cc2.jpg",
+            "assets/listings images/part2/cc3.jpg"
+        ],
         currentPrice: 999,
         originalPrice: 1599,
         discount: 38,
         rating: 4.3,
         reviews: 145,
-        category: "saree",
+        category: "kurti",
         isNew: true,
         isBestSelling: false
     },
@@ -293,7 +309,12 @@ const products = [
         id: 19,
         title: "Elegant Designer Silk Lehenga with Heavy Embroidery",
         brand: "Fashion Hub",
-        image: "assets/lisitngs/IMG-20250607-WA0024.jpg",
+        image: "assets/listings images/part2/dd1.jpg",
+        images: [
+            "assets/listings images/part2/dd1.jpg",
+            "assets/listings images/part2/dd2.jpg",
+            "assets/listings images/part2/dd3.jpg"
+        ],
         currentPrice: 1599,
         originalPrice: 2499,
         discount: 36,
@@ -305,15 +326,20 @@ const products = [
     },
     {
         id: 20,
-        title: "Chanderi silk fabric latest dress",
+        title: "Premium Gown Collection",
         brand: "Fashion Hub",
-        image: "assets/lisitngs/IMG-20250607-WA0025.jpg",
+        image: "assets/listings images/part2/ee1.jpg",
+        images: [
+            "assets/listings images/part2/ee1.jpg",
+            "assets/listings images/part2/ee2.jpg",
+            "assets/listings images/part2/ee3.jpg"
+        ],
         currentPrice: 1799,
         originalPrice: 2899,
         discount: 38,
         rating: 4.6,
         reviews: 167,
-        category: "lehenga",
+        category: "gown",
         isNew: true,
         isBestSelling: false
     },
@@ -321,7 +347,12 @@ const products = [
         id: 21,
         title: "Traditional Embroidered Anarkali Dress",
         brand: "Fashion Hub",
-        image: "assets/lisitngs/IMG-20250609-WA0004.jpg",
+        image: "assets/listings images/part2/ff1.jpg",
+        images: [
+            "assets/listings images/part2/ff1.jpg",
+            "assets/listings images/part2/ff2.jpg",
+            "assets/listings images/part2/ff3.jpg"
+        ],
         currentPrice: 1349,
         originalPrice: 2199,
         discount: 39,
@@ -333,9 +364,14 @@ const products = [
     },
     {
         id: 22,
-        title: "Organza fabrics beautiful gown full sleeves",
+        title: "Elegant Party Wear Gown Collection",
         brand: "Fashion Hub",
-        image: "assets/lisitngs/IMG-20250628-WA0030.jpg",
+        image: "assets/listings images/part2/gg1.jpg",
+        images: [
+            "assets/listings images/part2/gg1.jpg",
+            "assets/listings images/part2/gg2.jpg",
+            "assets/listings images/part2/gg3.jpg"
+        ],
         currentPrice: 1399,
         originalPrice: 2299,
         discount: 39,
@@ -347,9 +383,14 @@ const products = [
     },
     {
         id: 23,
-        title: "Organza fabrics beautiful gown full sleeves",
+        title: "Designer Saree Collection",
         brand: "Fashion Hub",
-        image: "assets/lisitngs/IMG-20250628-WA0041.jpg",
+        image: "assets/listings images/part2/hh1.JPG",
+        images: [
+            "assets/listings images/part2/hh1.JPG",
+            "assets/listings images/part2/hh2.jpg",
+
+        ],
         currentPrice: 1499,
         originalPrice: 2399,
         discount: 38,
@@ -361,15 +402,19 @@ const products = [
     },
     {
         id: 24,
-        title: "Chanderi silk fabric latest dress",
+        title: "Special Designer Dress Collection",
         brand: "Fashion Hub",
-        image: "assets/lisitngs/IMG-20250628-WA0065.jpg",
+        image: "assets/listings images/part2/ii1.JPG",
+        images: [
+            "assets/listings images/part2/ii1.JPG",
+        
+        ],
         currentPrice: 1099,
         originalPrice: 1799,
         discount: 39,
         rating: 4.2,
         reviews: 76,
-        category: "kurti",
+        category: "dress",
         isNew: true,
         isBestSelling: false
     }
@@ -602,18 +647,24 @@ function saveCart() {
 function updateCartUI() {
     // Update cart count
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCount.textContent = totalItems;
+    if (cartCount) cartCount.textContent = totalItems;
     
     // Update cart total
     const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    cartTotal.textContent = totalPrice;
-    document.querySelector('.currency').textContent = `Rs. ${totalPrice}`;
+    if (cartTotal) cartTotal.textContent = totalPrice;
+    const currencyElement = document.querySelector('.currency');
+    if (currencyElement) currencyElement.textContent = `Rs. ${totalPrice}`;
     
     // Update cart items
     renderCartItems();
+    
+    // Update mobile cart count
+    updateMobileCartCount();
 }
 
 function renderCartItems() {
+    if (!cartItems) return; // Safety check
+    
     if (cart.length === 0) {
         cartItems.innerHTML = '<div class="text-center">Your cart is empty</div>';
         return;
@@ -644,7 +695,9 @@ function renderCartItems() {
 }
 
 function toggleCart() {
-    cartSidebar.classList.toggle('open');
+    if (cartSidebar) {
+        cartSidebar.classList.toggle('open');
+    }
 }
 
 // WhatsApp functionality
@@ -672,6 +725,28 @@ function sendWhatsAppEnquiry() {
     
     window.open(whatsappUrl, '_blank');
 }
+
+// WhatsApp enquiry for single product (from product cards)
+function sendProductWhatsAppEnquiry(productId) {
+    const product = products.find(p => p.id == productId);
+    if (!product) {
+        alert('Product not found!');
+        return;
+    }
+    
+    let message = `Hello! I am interested in the following product from Fashion Hub:\n\n`;
+    message += `${product.title}\n`;
+    message += `Price: Rs. ${product.currentPrice}\n`;
+    message += `Category: ${product.category}\n\n`;
+    message += 'Please provide more details about availability and delivery.';
+    
+    const phoneNumber = '919898005546';
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    
+    window.open(whatsappUrl, '_blank');
+}
+
 
 // Wishlist functionality
 let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
@@ -715,212 +790,8 @@ function injectPromoBanner() {
     footer.parentNode.insertBefore(bannerWrapper, footer);
 }
 
-// Quick view functionality
-function quickView(productId) {
-    const product = products.find(p => p.id === productId);
-    if (!product) return;
-    
-    // Create modal for quick view
-    const modal = document.createElement('div');
-    modal.className = 'modal';
-    modal.innerHTML = `
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div class="quick-view-content">
-                <div class="quick-view-image">
-                    <img src="${getAssetPath(product.image)}" alt="${product.title}">
-                </div>
-                <div class="quick-view-info">
-                    <h2>${product.title}</h2>
-                    <div class="price">
-                        <span class="current-price">Rs. ${product.currentPrice}</span>
-                        ${product.originalPrice ? `<span class="original-price">Rs. ${product.originalPrice}</span>` : ''}
-                    </div>
-                    <div class="rating">
-                        ${generateStars(product.rating)} (${product.reviews} reviews)
-                    </div>
-                    <div class="actions">
-                        <button class="add-to-cart" onclick="addToCart(${product.id}); closeModal();">
-                            Add to Cart
-                        </button>
-                        <button class="whatsapp-enquiry" onclick="sendSingleProductEnquiry(${product.id})">
-                            <i class="fab fa-whatsapp"></i> Enquire on WhatsApp
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    document.body.appendChild(modal);
-    
-    // Add modal styles
-    const modalStyles = `
-        .modal {
-            display: block;
-            position: fixed;
-            z-index: 3000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-        }
-        
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 0;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 800px;
-            position: relative;
-        }
-        
-        .close {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 3001;
-        }
-        
-        .close:hover {
-            color: black;
-        }
-        
-        .quick-view-content {
-            display: flex;
-            gap: 40px;
-            padding: 40px;
-        }
-        
-        .quick-view-image {
-            flex: 1;
-        }
-        
-        .quick-view-image img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-        
-        .quick-view-info {
-            flex: 1;
-        }
-        
-        .quick-view-info h2 {
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-        
-        .quick-view-info .price {
-            margin-bottom: 20px;
-        }
-        
-        .quick-view-info .current-price {
-            font-size: 24px;
-            font-weight: 600;
-            color: #e91e63;
-            margin-right: 15px;
-        }
-        
-        .quick-view-info .original-price {
-            font-size: 18px;
-            text-decoration: line-through;
-            color: #999;
-        }
-        
-        .quick-view-info .rating {
-            margin-bottom: 30px;
-            color: #ffc107;
-        }
-        
-        .quick-view-info .actions {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .quick-view-info .actions button {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .quick-view-info .add-to-cart {
-            background: #333;
-            color: white;
-        }
-        
-        .quick-view-info .add-to-cart:hover {
-            background: #e91e63;
-        }
-        
-        .quick-view-info .whatsapp-enquiry {
-            background: #25D366;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .quick-view-info .whatsapp-enquiry:hover {
-            background: #128C7E;
-        }
-        
-        @media (max-width: 768px) {
-            .quick-view-content {
-                flex-direction: column;
-                padding: 20px;
-            }
-            
-            .modal-content {
-                margin: 10% auto;
-                width: 95%;
-            }
-        }
-    `;
-    
-    const styleSheet = document.createElement('style');
-    styleSheet.textContent = modalStyles;
-    document.head.appendChild(styleSheet);
-}
 
-function closeModal() {
-    const modal = document.querySelector('.modal');
-    if (modal) {
-        modal.remove();
-    }
-}
 
-function sendSingleProductEnquiry(productId) {
-    const product = products.find(p => p.id === productId);
-    if (!product) return;
-    
-    const message = `Hello! I am interested in this product from Fashion Hub:
-
-${product.title}
-Price: Rs. ${product.currentPrice}
-
-Please provide more details about availability, sizes, and delivery options.`;
-    
-    const phoneNumber = '919898005546';
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-    
-    window.open(whatsappUrl, '_blank');
-    closeModal();
-}
 
 // Slider functionality
 let currentSlide = 0;

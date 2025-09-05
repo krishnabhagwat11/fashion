@@ -114,6 +114,9 @@
             <div class="cart-total">
                 <strong>Total: Rs. <span id="cart-total">0</span></strong>
             </div>
+            <div class="whatsapp-note">
+                <p>Kindly copy the message and paste to the redirected WhatsApp number!</p>
+            </div>
             <button class="whatsapp-enquiry" onclick="sendWhatsAppEnquiry()">
                 <i class="fab fa-whatsapp"></i>
                 Enquire on WhatsApp
@@ -184,6 +187,27 @@
     <div class="whatsapp-float">
         <a href="https://wa.me/919898005546" target="_blank">
             <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-nav">
+        <a href="../index.html" class="mobile-nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#cart" class="mobile-nav-item" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+            <span class="mobile-nav-badge" id="mobile-cart-count">0</span>
+        </a>
+        <a href="#account" class="mobile-nav-item">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+        <a href="#search" class="mobile-nav-item">
+            <i class="fas fa-search"></i>
+            <span>Search</span>
         </a>
     </div>
 
