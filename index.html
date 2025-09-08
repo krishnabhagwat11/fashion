@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion Hub - Designer Sarees, Lehenga & Anarkali</title>
+    <title>Fashion Hub - Designer Dresses, Lehenga & Anarkali</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,13 +31,13 @@
                 <ul>
                     <li><a href="#home">HOME</a></li>
                     <li class="dropdown">
-                        <a href="#saree">SAREE <i class="fas fa-chevron-down"></i></a>
+                        <a href="#saree">EXCLUSIVE COLLECTION <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="pages/ready-to-wear-saree.html">Ready to Wear Saree</a></li>
-                            <li><a href="pages/wedding-saree.html">Wedding Saree</a></li>
-                            <li><a href="pages/bollywood-saree.html">Bollywood Saree</a></li>
-                            <li><a href="pages/one-minute-saree.html">One Minute Saree</a></li>
-                            <li><a href="pages/party-wear-saree.html">Party Wear Saree</a></li>
+                            <li><a href="pages/ready-to-wear-saree.html">Ready to Wear Collection</a></li>
+                            <li><a href="pages/wedding-saree.html">Wedding Collection</a></li>
+                            <li><a href="pages/bollywood-saree.html">Bollywood Collection</a></li>
+                            <li><a href="pages/one-minute-saree.html">One Minute Collection</a></li>
+                            <li><a href="pages/party-wear-saree.html">Party Wear Collection</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -72,7 +72,7 @@
                 <button class="search-btn">
                     <i class="fas fa-search"></i>
                 </button>
-                <button class="wishlist-btn">
+                <button class="wishlist-btn" onclick="toggleWishlist()">
                     <i class="fas fa-heart"></i>
                     <span class="badge">0</span>
                 </button>
@@ -219,13 +219,32 @@
         </div>
     </div>
 
+    <!-- Wishlist Sidebar -->
+    <div class="wishlist-sidebar" id="wishlist-sidebar">
+        <div class="wishlist-header">
+            <h3>My Wishlist</h3>
+            <button class="close-wishlist" onclick="toggleWishlist()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="wishlist-items" id="wishlist-items">
+            <!-- Wishlist items will be loaded here -->
+        </div>
+        <div class="wishlist-footer">
+            <div class="wishlist-total">
+                <strong><span id="wishlist-count">0</span> items in wishlist</strong>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>ABOUT US</h3>
-                    <p>Fashion Hub is specialize in curating a mesmerizing collection of Anarkali Dress, Sarees, that transcends boundaries and celebrates the diversity of our heritage.</p>
+                    <p>Fashion Hub is specialize in curating a mesmerizing collection of Anarkali Dress, Designer Collections, that transcends boundaries and celebrates the diversity of our heritage.</p>
                     <div class="social-links">
                         <h4>Keep in Touch:</h4>
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -252,7 +271,7 @@
                     <h3>CATEGORY</h3>
                     <ul>
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#saree">Saree</a></li>
+                        <li><a href="#saree">Exclusive Collection</a></li>
                         <li><a href="#sale">Sale</a></li>
                         <li><a href="#lehenga">Lehenga Set</a></li>
                         <li><a href="#dress">Dress</a></li>
@@ -290,6 +309,11 @@
         <a href="#shop" class="mobile-nav-item">
             <i class="fas fa-th-large"></i>
             <span>Shop</span>
+        </a>
+        <a href="#wishlist" class="mobile-nav-item" onclick="toggleWishlist()">
+            <i class="fas fa-heart"></i>
+            <span>Wishlist</span>
+            <span class="mobile-nav-badge" id="mobile-wishlist-count">0</span>
         </a>
         <a href="#cart" class="mobile-nav-item" onclick="toggleCart()">
             <i class="fas fa-shopping-cart"></i>

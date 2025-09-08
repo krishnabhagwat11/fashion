@@ -78,9 +78,9 @@ ss<!DOCTYPE html>
                 <button class="search-btn">
                     <i class="fas fa-search"></i>
                 </button>
-                <button class="wishlist-btn">
+                <button class="wishlist-btn" onclick="toggleWishlist()">
                     <i class="fas fa-heart"></i>
-                    <span class="badge">0</span>
+                    <span class="badge" id="wishlist-count">0</span>
                 </button>
                 <button class="cart-btn" onclick="toggleCart()">
                     <i class="fas fa-shopping-cart"></i>
@@ -448,7 +448,7 @@ ss<!DOCTYPE html>
         </div>
     </nav>
 
-    <script src="script.js"></script>
+    <script src="../js/script.js"></script>
     <script>
         // Category filtering functionality
         document.addEventListener('DOMContentLoaded', function() {

@@ -83,7 +83,7 @@ const products = [
         discount: 36,
         rating: 4.5,
         reviews: 127,
-        category: "saree",
+        category: "collection",
         isNew: false,
         isBestSelling: true
     },
@@ -108,7 +108,7 @@ const products = [
     },
     {
         id: 3,
-        title: "Premium Silk Saree Collection",
+        title: "Premium Silk Collection",
         brand: "Fashion Hub",
         image: "assets/listings images/part1/s1.jpg",
         images: [
@@ -121,13 +121,13 @@ const products = [
         discount: 38,
         rating: 4.6,
         reviews: 156,
-        category: "saree",
+        category: "collection",
         isNew: false,
         isBestSelling: true
     },
     {
         id: 4,
-        title: "Fancy Border Premium Lace Work Silk Saree",
+        title: "Fancy Border Premium Lace Work Silk Collection",
         brand: "Fashion Hub",
         image: "assets/listings images/part1/p1.jpg",
         images: [
@@ -140,7 +140,7 @@ const products = [
         discount: 38,
         rating: 4.4,
         reviews: 98,
-        category: "saree",
+        category: "collection",
         isNew: false,
         isBestSelling: true
     },
@@ -217,7 +217,7 @@ const products = [
     },
     {
         id: 9,
-        title: "Wedding Special Heavy Embroidered Saree",
+        title: "Wedding Special Heavy Embroidered Collection",
         brand: "Fashion Hub",
         image: "assets/listings images/part1/lis1.jpg",
         images: [
@@ -230,13 +230,13 @@ const products = [
         discount: 38,
         rating: 4.8,
         reviews: 234,
-        category: "saree",
+        category: "collection",
         isNew: false,
         isBestSelling: true
     },
     {
         id: 10,
-        title: "Elegant Silk Saree Collection",
+        title: "Elegant Silk Collection",
         brand: "Fashion Hub",
         image: "assets/listings images/part2/bb1.jpg",
         images: [
@@ -249,7 +249,7 @@ const products = [
         discount: 36,
         rating: 4.6,
         reviews: 198,
-        category: "saree",
+        category: "collection",
         isNew: true,
         isBestSelling: false
     },
@@ -383,7 +383,7 @@ const products = [
     },
     {
         id: 23,
-        title: "Designer Saree Collection",
+        title: "Designer Collection",
         brand: "Fashion Hub",
         image: "assets/listings images/part2/hh1.JPG",
         images: [
@@ -396,7 +396,7 @@ const products = [
         discount: 38,
         rating: 4.7,
         reviews: 145,
-        category: "saree",
+        category: "collection",
         isNew: true,
         isBestSelling: false
     },
@@ -435,12 +435,15 @@ const newArrivalsProducts = document.getElementById('new-arrivals-products');
 document.addEventListener('DOMContentLoaded', function() {
     loadProducts();
     updateCartUI();
+    updateWishlistUI();
     initializeSlider();
     setupEventListeners();
     injectPromoBanner();
     
     // Auto-load products for category pages
     autoLoadCategoryProducts();
+    
+    
 });
 
 // Close banner functionality
@@ -463,27 +466,27 @@ function autoLoadCategoryProducts() {
         // Determine category and container
         if (currentPage.includes('ready-to-wear-saree')) {
             categoryProducts = products.filter(product => 
-                product.category === 'saree' && product.title.toLowerCase().includes('ready')
+                product.category === 'collection' && product.title.toLowerCase().includes('ready')
             );
             containerId = 'ready-wear-saree-products';
         } else if (currentPage.includes('wedding-saree')) {
             categoryProducts = products.filter(product => 
-                product.category === 'saree' && product.title.toLowerCase().includes('wedding')
+                product.category === 'collection' && product.title.toLowerCase().includes('wedding')
             );
             containerId = 'wedding-saree-products';
         } else if (currentPage.includes('bollywood-saree')) {
             categoryProducts = products.filter(product => 
-                product.category === 'saree' && product.title.toLowerCase().includes('bollywood')
+                product.category === 'collection' && product.title.toLowerCase().includes('bollywood')
             );
             containerId = 'bollywood-saree-products';
         } else if (currentPage.includes('one-minute-saree')) {
             categoryProducts = products.filter(product => 
-                product.category === 'saree' && product.title.toLowerCase().includes('one minute')
+                product.category === 'collection' && product.title.toLowerCase().includes('one minute')
             );
             containerId = 'one-minute-saree-products';
         } else if (currentPage.includes('party-wear-saree')) {
             categoryProducts = products.filter(product => 
-                product.category === 'saree' && product.title.toLowerCase().includes('party')
+                product.category === 'collection' && product.title.toLowerCase().includes('party')
             );
             containerId = 'party-wear-saree-products';
         } else if (currentPage.includes('lehenga')) {
@@ -696,7 +699,7 @@ function renderCartItems() {
 
 function toggleCart() {
     if (cartSidebar) {
-        cartSidebar.classList.toggle('open');
+    cartSidebar.classList.toggle('open');
     }
 }
 
@@ -752,24 +755,113 @@ function sendProductWhatsAppEnquiry(productId) {
 let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
 function toggleWishlist(productId) {
-    const index = wishlist.indexOf(productId);
-    
-    if (index > -1) {
-        wishlist.splice(index, 1);
-        showNotification('Removed from wishlist');
+    // If productId is provided, toggle the product in wishlist
+    if (productId) {
+        // Convert to number for consistent comparison
+        const numericProductId = parseInt(productId);
+        const index = wishlist.indexOf(numericProductId);
+        
+        if (index > -1) {
+            wishlist.splice(index, 1);
+            showNotification('Removed from wishlist');
+        } else {
+            wishlist.push(numericProductId);
+            showNotification('Added to wishlist');
+        }
+        
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        updateWishlistUI();
     } else {
-        wishlist.push(productId);
-        showNotification('Added to wishlist');
+        // If no productId, toggle the wishlist sidebar
+        const wishlistSidebar = document.getElementById('wishlist-sidebar');
+        if (wishlistSidebar) {
+            wishlistSidebar.classList.toggle('open');
+            // Add a small delay to ensure products are loaded
+            setTimeout(() => {
+                renderWishlistItems();
+            }, 100);
+        }
     }
-    
-    localStorage.setItem('wishlist', JSON.stringify(wishlist));
-    updateWishlistUI();
 }
 
 function updateWishlistUI() {
     const wishlistCount = document.querySelector('.wishlist-btn .badge');
-    wishlistCount.textContent = wishlist.length;
+    const mobileWishlistCount = document.getElementById('mobile-wishlist-count');
+    const wishlistCountDisplay = document.getElementById('wishlist-count');
+    
+    if (wishlistCount) {
+        wishlistCount.textContent = wishlist.length;
+    }
+    if (mobileWishlistCount) {
+        mobileWishlistCount.textContent = wishlist.length;
+    }
+    if (wishlistCountDisplay) {
+        wishlistCountDisplay.textContent = wishlist.length;
+    }
 }
+
+function renderWishlistItems() {
+    const wishlistItems = document.getElementById('wishlist-items');
+    if (!wishlistItems) return;
+    
+    if (wishlist.length === 0) {
+        wishlistItems.innerHTML = `
+            <div class="empty-wishlist">
+                <i class="fas fa-heart"></i>
+                <h4>Your wishlist is empty</h4>
+                <p>Add some items to your wishlist to see them here</p>
+            </div>
+        `;
+        return;
+    }
+    
+    wishlistItems.innerHTML = '';
+    
+    wishlist.forEach(productId => {
+        const product = products.find(p => p.id == productId);
+        
+        if (product) {
+            const wishlistItem = document.createElement('div');
+            wishlistItem.className = 'wishlist-item';
+            wishlistItem.innerHTML = `
+                <img src="${getAssetPath(product.image)}" alt="${product.title}">
+                <div class="wishlist-item-info">
+                    <div class="wishlist-item-title">${product.title}</div>
+                    <div class="wishlist-item-price">Rs. ${product.currentPrice}</div>
+                </div>
+                <div class="wishlist-item-actions">
+                    <button class="add-to-cart-from-wishlist" onclick="addToCartFromWishlist(${product.id})">
+                        Add to Cart
+                    </button>
+                    <button class="remove-from-wishlist" onclick="removeFromWishlist(${product.id})">
+                        Remove
+                    </button>
+                </div>
+            `;
+            wishlistItems.appendChild(wishlistItem);
+        }
+    });
+}
+
+
+function addToCartFromWishlist(productId) {
+    addToCart(productId);
+    showNotification('Added to cart from wishlist!');
+}
+
+function removeFromWishlist(productId) {
+    const numericProductId = parseInt(productId);
+    const index = wishlist.indexOf(numericProductId);
+    
+    if (index > -1) {
+        wishlist.splice(index, 1);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        updateWishlistUI();
+        renderWishlistItems();
+        showNotification('Removed from wishlist');
+    }
+}
+
 
 // Inject promo banner above footer on every page
 function injectPromoBanner() {

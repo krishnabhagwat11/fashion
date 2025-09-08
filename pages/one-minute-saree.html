@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One Minute Saree - Fashion Hub</title>
+    <title>One Minute Collection - Fashion Hub</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,13 +30,13 @@
                 <ul>
                     <li><a href="index.html">HOME</a></li>
                     <li class="dropdown">
-                        <a href="#saree">SAREE <i class="fas fa-chevron-down"></i></a>
+                        <a href="#saree">EXCLUSIVE COLLECTION <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="ready-to-wear-saree.html">Ready to Wear Saree</a></li>
-                            <li><a href="wedding-saree.html">Wedding Saree</a></li>
-                            <li><a href="bollywood-saree.html">Bollywood Saree</a></li>
-                            <li><a href="one-minute-saree.html">One Minute Saree</a></li>
-                            <li><a href="party-wear-saree.html">Party Wear Saree</a></li>
+                            <li><a href="ready-to-wear-saree.html">Ready to Wear Collection</a></li>
+                            <li><a href="wedding-saree.html">Wedding Collection</a></li>
+                            <li><a href="bollywood-saree.html">Bollywood Collection</a></li>
+                            <li><a href="one-minute-saree.html">One Minute Collection</a></li>
+                            <li><a href="party-wear-saree.html">Party Wear Collection</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -85,8 +85,8 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1>One Minute Saree</h1>
-            <p>Quick and easy to wear sarees that look stunning in just one minute</p>
+            <h1>One Minute Collection</h1>
+            <p>Quick and easy to wear collection that looks stunning in just one minute</p>
         </div>
     </section>
 
@@ -121,6 +121,24 @@
                 <i class="fab fa-whatsapp"></i>
                 Enquire on WhatsApp
             </button>
+        </div>
+    </div>
+
+    <!-- Wishlist Sidebar -->
+    <div class="wishlist-sidebar" id="wishlist-sidebar">
+        <div class="wishlist-header">
+            <h3>My Wishlist</h3>
+            <button class="close-wishlist" onclick="toggleWishlist()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="wishlist-items" id="wishlist-items">
+            <!-- Wishlist items will be loaded here -->
+        </div>
+        <div class="wishlist-footer">
+            <div class="wishlist-total">
+                <strong><span id="wishlist-count">0</span> items in wishlist</strong>
+            </div>
         </div>
     </div>
 
