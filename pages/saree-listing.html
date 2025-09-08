@@ -4,7 +4,7 @@ ss<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saree Collection - Fashion Hub</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -23,20 +23,22 @@ ss<!DOCTYPE html>
     <header class="header">
         <div class="container">
             <div class="logo">
-                <img src="fashion_hub logo.svg" alt="Fashion Hub" class="logo-img">
+                <a href="../index.html">
+                    <img src="../assets/logos/fashion_hub logo.svg" alt="Fashion Hub" class="logo-img">
+                </a>
             </div>
             
             <nav class="nav">
                 <ul>
-                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="../index.html">HOME</a></li>
                     <li class="dropdown active">
-                        <a href="#saree">SAREE <i class="fas fa-chevron-down"></i></a>
+                        <a href="#saree">EXCLUSIVE COLLECTION <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="ready-to-wear-saree.html">Ready to Wear Saree</a></li>
-                            <li><a href="wedding-saree.html">Wedding Saree</a></li>
-                            <li><a href="bollywood-saree.html">Bollywood Saree</a></li>
-                            <li><a href="one-minute-saree.html">One Minute Saree</a></li>
-                            <li><a href="party-wear-saree.html">Party Wear Saree</a></li>
+                            <li><a href="ready-to-wear-saree.html">Ready to Wear Collection</a></li>
+                            <li><a href="wedding-saree.html">Wedding Collection</a></li>
+                            <li><a href="bollywood-saree.html">Bollywood Collection</a></li>
+                            <li><a href="one-minute-saree.html">One Minute Collection</a></li>
+                            <li><a href="party-wear-saree.html">Party Wear Collection</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -110,9 +112,9 @@ ss<!DOCTYPE html>
             <div class="category-tabs">
                 <button class="category-tab active" data-category="all">All Sarees</button>
                 <button class="category-tab" data-category="ready-to-wear">Ready to Wear</button>
-                <button class="category-tab" data-category="wedding">Wedding Saree</button>
-                <button class="category-tab" data-category="bollywood">Bollywood Saree</button>
-                <button class="category-tab" data-category="one-minute">One Minute Saree</button>
+                <button class="category-tab" data-category="wedding">Wedding Collection</button>
+                <button class="category-tab" data-category="bollywood">Bollywood Collection</button>
+                <button class="category-tab" data-category="one-minute">One Minute Collection</button>
                 <button class="category-tab" data-category="party">Party Wear</button>
             </div>
         </div>
@@ -163,15 +165,15 @@ ss<!DOCTYPE html>
     <section class="products-section">
         <div class="container">
             <div class="products-grid" id="saree-products">
-                <!-- Ready to Wear Saree Products -->
+                <!-- Ready to Wear Collection Products -->
                 <div class="product-card" data-category="ready-to-wear" data-price="1800" data-color="blue">
                     <div class="product-image-container">
-                        <img src="../assets/lisitngs/IMG_20250715_093634_0932.jpg" alt="Ready to Wear Saree" class="product-image">
+                        <img src="../assets/lisitngs/IMG_20250715_093634_0932.jpg" alt="Ready to Wear Collection" class="product-image">
                         <div class="discount-badge">18% OFF</div>
                     </div>
                     <div class="product-info">
                         <div class="brand-name">Fashion Hub</div>
-                        <h3 class="product-title">Blue Ready to Wear Saree</h3>
+                        <h3 class="product-title">Blue Ready to Wear Collection</h3>
                         <div class="price-section">
                             <span class="current-price">₹1,800</span>
                             <span class="original-price">₹2,200</span>
@@ -195,12 +197,12 @@ ss<!DOCTYPE html>
 
                 <div class="product-card" data-category="wedding" data-price="5500" data-color="red">
                     <div class="product-image-container">
-                        <img src="../assets/lisitngs/IMG_20250715_093720_0783.JPG" alt="Wedding Saree" class="product-image">
+                        <img src="../assets/lisitngs/IMG_20250715_093720_0783.JPG" alt="Wedding Collection" class="product-image">
                         <div class="discount-badge">21% OFF</div>
                     </div>
                     <div class="product-info">
                         <div class="brand-name">Fashion Hub</div>
-                        <h3 class="product-title">Traditional Red Wedding Saree</h3>
+                        <h3 class="product-title">Traditional Red Wedding Collection</h3>
                         <div class="price-section">
                             <span class="current-price">₹5,500</span>
                             <span class="original-price">₹7,000</span>
@@ -224,7 +226,7 @@ ss<!DOCTYPE html>
 
                 <div class="product-card" data-category="bollywood" data-price="3200" data-color="pink">
                     <div class="product-image-container">
-                        <img src="../assets/lisitngs/IMG_20250715_093744_0002.JPG" alt="Bollywood Saree" class="product-image">
+                        <img src="../assets/lisitngs/IMG_20250715_093744_0002.JPG" alt="Bollywood Collection" class="product-image">
                         <div class="discount-badge">20% OFF</div>
                     </div>
                     <div class="product-info">
@@ -253,12 +255,12 @@ ss<!DOCTYPE html>
 
                 <div class="product-card" data-category="one-minute" data-price="1200" data-color="green">
                     <div class="product-image-container">
-                        <img src="../assets/lisitngs/IMG_20250715_093755_0995.jpg" alt="One Minute Saree" class="product-image">
+                        <img src="../assets/lisitngs/IMG_20250715_093755_0995.jpg" alt="One Minute Collection" class="product-image">
                         <div class="discount-badge">20% OFF</div>
                     </div>
                     <div class="product-info">
                         <div class="brand-name">Fashion Hub</div>
-                        <h3 class="product-title">Green One Minute Saree</h3>
+                        <h3 class="product-title">Green One Minute Collection</h3>
                         <div class="price-section">
                             <span class="current-price">₹1,200</span>
                             <span class="original-price">₹1,500</span>
@@ -282,12 +284,12 @@ ss<!DOCTYPE html>
 
                 <div class="product-card" data-category="party" data-price="2800" data-color="purple">
                     <div class="product-image-container">
-                        <img src="../assets/lisitngs/IMG_20250715_093810_0693.jpg" alt="Party Wear Saree" class="product-image">
+                        <img src="../assets/lisitngs/IMG_20250715_093810_0693.jpg" alt="Party Wear Collection" class="product-image">
                         <div class="discount-badge">20% OFF</div>
                     </div>
                     <div class="product-info">
                         <div class="brand-name">Fashion Hub</div>
-                        <h3 class="product-title">Purple Party Wear Saree</h3>
+                        <h3 class="product-title">Purple Party Wear Collection</h3>
                         <div class="price-section">
                             <span class="current-price">₹2,800</span>
                             <span class="original-price">₹3,500</span>
@@ -311,12 +313,12 @@ ss<!DOCTYPE html>
 
                 <div class="product-card" data-category="ready-to-wear" data-price="1500" data-color="orange">
                     <div class="product-image-container">
-                        <img src="../assets/lisitngs/IMG-20250607-WA0021.jpg" alt="Orange Ready to Wear Saree" class="product-image">
+                        <img src="../assets/lisitngs/IMG-20250607-WA0021.jpg" alt="Orange Ready to Wear Collection" class="product-image">
                         <div class="discount-badge">17% OFF</div>
                     </div>
                     <div class="product-info">
                         <div class="brand-name">Fashion Hub</div>
-                        <h3 class="product-title">Orange Ready to Wear Saree</h3>
+                        <h3 class="product-title">Orange Ready to Wear Collection</h3>
                         <div class="price-section">
                             <span class="current-price">₹1,500</span>
                             <span class="original-price">₹1,800</span>
@@ -340,12 +342,12 @@ ss<!DOCTYPE html>
 
                 <div class="product-card" data-category="wedding" data-price="6800" data-color="gold">
                     <div class="product-image-container">
-                        <img src="../assets/lisitngs/IMG-20250607-WA0022.jpg" alt="Gold Wedding Saree" class="product-image">
+                        <img src="../assets/lisitngs/IMG-20250607-WA0022.jpg" alt="Gold Wedding Collection" class="product-image">
                         <div class="discount-badge">20% OFF</div>
                     </div>
                     <div class="product-info">
                         <div class="brand-name">Fashion Hub</div>
-                        <h3 class="product-title">Golden Wedding Saree</h3>
+                        <h3 class="product-title">Golden Wedding Collection</h3>
                         <div class="price-section">
                             <span class="current-price">₹6,800</span>
                             <span class="original-price">₹8,500</span>
@@ -369,12 +371,12 @@ ss<!DOCTYPE html>
 
                 <div class="product-card" data-category="bollywood" data-price="3800" data-color="silver">
                     <div class="product-image-container">
-                        <img src="../assets/lisitngs/IMG-20250607-WA0024.jpg" alt="Silver Bollywood Saree" class="product-image">
+                        <img src="../assets/lisitngs/IMG-20250607-WA0024.jpg" alt="Silver Bollywood Collection" class="product-image">
                         <div class="discount-badge">21% OFF</div>
                     </div>
                     <div class="product-info">
                         <div class="brand-name">Fashion Hub</div>
-                        <h3 class="product-title">Silver Bollywood Saree</h3>
+                        <h3 class="product-title">Silver Bollywood Collection</h3>
                         <div class="price-section">
                             <span class="current-price">₹3,800</span>
                             <span class="original-price">₹4,800</span>
